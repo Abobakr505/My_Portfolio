@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Alsalam Ealaykum, I am Bakr Hasan, a passionate Full Stack Developer with a strong ability to build seamless and efficient web applications. I specialize in both front-end and back-end development, creating user-friendly interfaces and robust server-side solutions. I am always eager to learn, innovate, and deliver high-quality, scalable digital solutions that make a real impact.">
+  <meta name="keywords" content="portfolio , Full Stack Developer , Html , Css , JavaScript ">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+<!-- Splide CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"
+/>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
+/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link rel="icon" type="image/png" href="assets/bakr.webp" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Bakr Portfolio ✌️</title>
+</head>
+
+<body>
+  <div id="preloader">
+    <img src="assets/bakr.webp" alt=""><br>
+  </div>
+  <div id="butter">
+    <header class="header">
+      <h2 class="visually-hidden">Header</h2>
+      <div class="wrapper">
+        <nav class="header__nav">
+          <h2 class="visually-hidden">Navigation</h2>
+          <a href="/" class="header__home">
+            BakrHasan<span style="color: var(--accent);">.</span>
+            <span class="visually-hidden">(to home page)</span>
+          </a>
+          <a href="https://www.facebook.com/abobakr.hasan.589?mibextid=ZbWKwL" target="_blank" class="header__social">
+            <i class="fa-brands fa-square-facebook"></i>
+          </a>
+          <a href="https://www.tiktok.com/@yasuruha/" target="_blank" class="header__social">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://instagram.com/abobakrhasan?igshid=YTQwZjQ0NmI0OA==" target="_blank" class="header__social">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@yasuruha" target="_blank" class="header__social">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="wrapper hero__wrapper bottom-border">
+          <div class="hero__content">
+            <picture>
+              <source media="(min-width: 62.5em)" srcset="./assets/images/home.webp" loading="lazy"/>
+              <source media="(min-width: 37.5em)" srcset="./assets/images/home.webp" loading="lazy"/>
+              <img class="hero__image" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500"
+                src="./assets/images/home.webp" alt="picture of Adam Keyes" width-="174" height="383" loading="lazy" />
+            </picture>
+            <img class="hero__rings" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500"
+              src="./assets/images/pattern-rings.svg" alt="" width="530" height="129" />
+            <img class="hero__circle" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400"
+              src="./assets/images/pattern-circle.svg" alt="" width="129" height="129" />
+            <img class="hero__ring" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400"
+              src="./assets/images/asterisk.png" alt="" width="129" height="129" style="filter:opacity(0.2);" />
+            <img class="hero__asterisk" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400"
+              src="./assets/images/asterisk.png" alt="" width="129" height="129" style="filter:opacity(0.5);" />
+              <img class="hero__lost" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400"
+              src="./assets/lost-my.webp" alt="" width="129" height="129" style=" transform: rotate(10deg);" />
+            <div class="hero__text">
+              <h1 class="hero__headline header-xl" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400">
+                Alsalam Ealaykum <br />
+                I'm <span>Bakr Hasan</span><span style="color: var(--accent);">.</span>
+              </h1>
+              <p class="hero__description aos-init aos-animate" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="400">
+                Alsalam Ealaykum, I am Bakr Hasan, a passionate <span style="color: #fff;"> FullStack Developer </span> and <span style="color: #fff;"> MobileApp Developer </span>
+                with a strong ability to build seamless and efficient web applications and mobile applications . I specialize in both front-end
+                and back-end development, creating user-friendly interfaces and robust server-side solutions. I am
+                always eager to learn, innovate, and deliver high-quality, scalable digital solutions that make a real
+                impact.
+              </p>
+              <a href="./assets/Abobakr_Hasan_CV.pdf"  class="hero__contact underline" download>Download CV</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
+        style="text-align: center; margin-top: 2rem;">MySkills</h2>
+      <section class="skills">
+        <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
+          style="text-align: center; margin-top: 2rem;">MyFrontEnd <i class="fa-solid fa-code"></i></h2>
+
+        <div class="wrapper skills__wrapper bottom-border">
+          
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+
+            <h3 class="skills__title">HTML <i class="fa-brands fa-html5"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">CSS <i class="fa-brands fa-css3"></i></h3>
+            <p class="skills__description">95%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">JavaScript <i class="fa-brands fa-square-js"></i></h3>
+            <p class="skills__description">90%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">React Js <i class="fa-brands fa-react"></i></h3>
+            <p class="skills__description">90%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Bootstrap <i class="fa-brands fa-bootstrap"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Tailwind <i class="fa-brands fa-css"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Sass <i class="fa-brands fa-sass"></i></h3>
+            <p class="skills__description">85%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Gsap library <i class="fa-brands fa-square-js"></i></h3>
+            <p class="skills__description">95%</p>
+          </div>
+        </div>
+        <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
+          style="text-align: center; margin-top: 2rem;">MyBackEnd <i class="fa-solid fa-server"></i></h2>
+        <div class="wrapper skills__wrapper bottom-border">
+          
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+
+            <h3 class="skills__title">GO Lang <i class="fa-brands fa-golang"></i></h3>
+            <p class="skills__description">90%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Fiber <i class="fa-brands fa-golang"></i></h3>
+            <p class="skills__description">90%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">SQlite <i class="fa-solid fa-database"></i></h3>
+            <p class="skills__description">85%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Supabase <i class="fa-solid fa-database"></i></h3>
+            <p class="skills__description">95%</p>
+          </div>
+           <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Payment Gateway <i class="fa-solid fa-credit-card"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <img class="hero__rings" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500"
+              src="./assets/images/pattern-rings.svg" alt="" width="530" height="129" />
+        </div>
+        <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
+          style="text-align: center; margin-top: 2rem;">MyMobileDev <i class="fa-solid fa-mobile"></i></h2>
+          
+          <img class="hero__mission" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500"
+              src="./assets/mission.webp" alt="" width="530" height="129" />
+        <div class="wrapper skills__wrapper bottom-border" >
+          
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">React Native <i class="fa-brands fa-react"></i></h3>
+            <p class="skills__description">80%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Expo <i class="fa-brands fa-react"></i></h3>
+            <p class="skills__description">90%</p>
+          </div>
+          
+          
+
+        </div>
+        <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
+          style="text-align: center; margin-top: 2rem;">MyTools <i class="fa-solid fa-screwdriver-wrench"></i></h2>
+        <div class="wrapper skills__wrapper bottom-border">
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Postman <i class="fa-brands fa-space-awesome"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Vs Code <i class="ri-terminal-box-fill " ></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Git/GitHab <i class="fa-brands fa-github"></i></h3>
+            <p class="skills__description">90%</p>
+            
+          </div>
+
+        </div>
+        <img class="skills__rings" src="./assets/images/pattern-rings.svg" alt="" width="530" height="129" />
+                <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
+          style="text-align: center; margin-top: 2rem;">My AITools <i class="fa-solid fa-toolbox"></i></h2>
+        <div class="wrapper skills__wrapper bottom-border">
+          
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+
+            <h3 class="skills__title"> Lovable Dev <i class="fa-solid fa-heart"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Grok AI <i class="fa-solid fa-comment-dots"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+          <div class="skills__item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+            <h3 class="skills__title">Bolt New <i class="fa-solid fa-b"></i></h3>
+            <p class="skills__description">100%</p>
+          </div>
+        </div>
+      </section>
+      <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
+        class="projects__headline header-xl" style="text-align: center; margin-top: 3.5rem;">MyCertifications</h2>
+      <section class="skills">
+      <div class="wrapper bottom-border" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+        <div class="certifications">
+          <img class="certificate" src="./assets/certifications/certificate-1.webp" alt="">
+          <img class="certificate" src="./assets/certifications/certificate-2.webp" alt="">
+          <img class="certificate" src="./assets/certifications/certificate-3.webp" alt="">
+          <img class="certificate" src="./assets/certifications/certificate-4.png" alt="">
+          <img class="certificate" src="./assets/certifications/certificate-5.png" alt="">
+        </div>
+      </div>
+    </section>
+
+      <!-- ===== My Services Slider ===== -->
+<section id="services" class="splide services-slider" aria-label="My Services">
+  <h2 class="header-xl" style="text-align: center; margin: 2.5rem 0;"  data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+    My Services
+  </h2>
+  <div class="splide__track" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+    <ul class="splide__list">
+      <!-- مثال بطاقة -->
+      <li class="splide__slide service-card">
+        <i class="fa-solid fa-code fa-3x"></i>
+        <h3 class="service-title">Web Development</h3>
+        <p class="service-desc">
+          Craft responsive, high‑performance websites with React &amp; Next.js.
+        </p>
+      </li>
+      <!-- Slide 2 -->
+      <li class="splide__slide service-card">
+        <i class="fa-solid fa-mobile-screen-button fa-3x"></i>
+        <h3 class="service-title">Mobile Apps</h3>
+        <p class="service-desc">
+          Develop cross‑platform mobile apps with React Native 
+        </p>
+      </li>
+      <!-- Slide 3 -->
+      <li class="splide__slide service-card">
+        <i class="fa-solid fa-database fa-3x"></i>
+        <h3 class="service-title">Backend & Databases</h3>
+        <p class="service-desc">
+          Design RESTful APIs and manage data with MongoDB, PostgreSQL, or Supabase.
+        </p>
+      </li>
+      <!-- Slide 4 -->
+      <li class="splide__slide service-card">
+        <i class="fa-solid fa-cloud-arrow-up fa-3x"></i>
+        <h3 class="service-title">Cloud Deployment</h3>
+        <p class="service-desc">
+          Deploy and scale applications on AWS, Vercel, or Netlify.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+      <section class="projects">
+        <img class="hero__past" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500"
+              src="./assets/the-past.webp" alt="" width="530" height="129" />
+        <div class="wrapper projects__wrapper">
+          <div class="projects__grid">
+            <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
+              class="projects__headline header-xl">MyProjects</h2>
+            <a data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
+              href="#contact" id="linky"
+              class="projects__contact underline">Contact me</a>
+              <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+                <picture class="projects__picture">
+                  <source media="(min-width: 62.5em)" srcset="./assets/projects/project-17/img-1.png" loading="lazy" />
+                  <img class="projects__image" src="./assets/projects/project-17/img-1.png"
+                    alt="is image Not found" width="343" height="253" loading="lazy" />
+                </picture>
+                <h3 class="projects__name"> Khaltoo Platform Website</h3>
+                <p class="projects__tags">
+                  <span>React Js</span>
+                  <span>Golang</span>
+                  <span>Supabase</span>
+                </p>
+                <div class="projects__links">
+                  <a 
+                    data-fancybox="gallery14" 
+                    href="./assets/projects/project-17/img-1.png" 
+                    class="underline">
+                    View Project
+                  </a>
+
+                  <!-- صور إضافية للمعرض -->
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-2.png" style="display:none;"></a>
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-3.png" style="display:none;"></a>
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-4.png" style="display:none;"></a>
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-5.png" style="display:none;"></a>
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-6.png" style="display:none;"></a>
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-7.png" style="display:none;"></a>
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-8.png" style="display:none;"></a>
+                  <a data-fancybox="gallery14" href="./assets/projects/project-17/img-9.png" style="display:none;"></a>
+                </div>
+              </div>
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+                <picture class="projects__picture">
+                  <source media="(min-width: 62.5em)" srcset="./assets/projects/project-15/img-1.png" loading="lazy" />
+                  <img class="projects__image" src="./assets/projects/project-15/img-1.png"
+                    alt="is image Not found" width="343" height="253" loading="lazy" />
+                </picture>
+                <h3 class="projects__name"> Sadaqah App</h3>
+                <p class="projects__tags">
+                  <span>REACT Native</span>
+                  <span>Expo</span>
+                  <span>Supabase</span>
+                </p>
+                <div class="projects__links">
+                  <a 
+                    data-fancybox="gallery15" 
+                    href="./assets/projects/project-15/img-1.png" 
+                    class="underline">
+                    View Project
+                  </a>
+
+                  <!-- صور إضافية للمعرض -->
+                  <a data-fancybox="gallery15" href="./assets/projects/project-15/img-2.png" style="display:none;"></a>
+                  <a data-fancybox="gallery15" href="./assets/projects/project-15/img-3.png" style="display:none;"></a>
+                  <a data-fancybox="gallery15" href="./assets/projects/project-15/img-4.png" style="display:none;"></a>
+                  <a data-fancybox="gallery15" href="./assets/projects/project-15/img-5.png" style="display:none;"></a>
+                  <a data-fancybox="gallery15" href="./assets/projects/project-15/img-6.png" style="display:none;"></a>
+                  <a data-fancybox="gallery15" href="./assets/projects/project-15/img-7.png" style="display:none;"></a>
+                  <a data-fancybox="gallery15" href="./assets/projects/project-15/img-8.png" style="display:none;"></a>
+                </div>
+              </div>
+              <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+                <picture class="projects__picture">
+                  <source media="(min-width: 62.5em)" srcset="./assets/projects/project-19/img-1.png" loading="lazy" />
+                  <img class="projects__image" src="./assets/projects/project-19/img-1.png"
+                    alt="is image Not found" width="343" height="253" loading="lazy" />
+                </picture>
+                <h3 class="projects__name"> NFC Profile Website</h3>
+                <p class="projects__tags">
+                  <span>REACT Js</span>
+                  <span>GoLang</span>
+                  <span>Supabase</span>
+                  <span>SQlite</span>
+                </p>
+                <div class="projects__links">
+                  <a 
+                    data-fancybox="gallery19" 
+                    href="./assets/projects/project-19/img-1.png" 
+                    class="underline">
+                    View Project
+                  </a>
+
+                  <!-- صور إضافية للمعرض -->
+                  <a data-fancybox="gallery19" href="./assets/projects/project-19/img-2.png" style="display:none;"></a>
+                  <a data-fancybox="gallery19" href="./assets/projects/project-19/img-3.png" style="display:none;"></a>
+                  <a data-fancybox="gallery19" href="./assets/projects/project-19/img-4.png" style="display:none;"></a>
+                </div>
+              </div>
+              <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+                <picture class="projects__picture">
+                  <source media="(min-width: 62.5em)" srcset="./assets/projects/project-18/img-1.png" loading="lazy" />
+                  <img class="projects__image" src="./assets/projects/project-18/img-1.png"
+                    alt="is image Not found" width="343" height="253" loading="lazy" />
+                </picture>
+                <h3 class="projects__name"> Forn System Website</h3>
+                <p class="projects__tags">
+                  <span>REACT Js</span>
+                  <span>Supabase</span>
+                </p>
+                <div class="projects__links">
+                  <a 
+                    data-fancybox="gallery18" 
+                    href="./assets/projects/project-18/img-1.png" 
+                    class="underline">
+                    View Project
+                  </a>
+
+                  <!-- صور إضافية للمعرض -->
+                  <a data-fancybox="gallery18" href="./assets/projects/project-18/img-2.png" style="display:none;"></a>
+                  <a data-fancybox="gallery18" href="./assets/projects/project-18/img-3.png" style="display:none;"></a>
+                  <a data-fancybox="gallery18" href="./assets/projects/project-18/img-4.png" style="display:none;"></a>
+                  <a data-fancybox="gallery18" href="./assets/projects/project-18/img-5.png" style="display:none;"></a>
+                </div>
+              </div>
+              <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-16.png" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-16.png"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Engineer Portfolio Website</h3>
+              <p class="projects__tags">
+                <span>Html</span>
+                <span>Css</span>
+                <span>JavaScript</span>
+                <span>GoLang</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://eng-mohammed.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+              <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-14.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-14.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name"> Zorn Clothes Website</h3>
+              <p class="projects__tags">
+                <span>REACT JS</span>
+                <span>Supabase</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://zorn.vercel.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-13.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-13.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name"> Holol Website</h3>
+              <p class="projects__tags">
+                <span>REACT JS</span>
+                <span>Supabase</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://holol.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-11.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-11.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name"> Portfolio With Admin Panal Website</h3>
+              <p class="projects__tags">
+                <span>REACT JS</span>
+                <span>Supabase</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://portfolio.tawrr.com/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-1.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-1.webp"
+                  alt="screenshot of design portfolio website" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Elabhar Website</h3>
+              <p class="projects__tags">
+                <span>React Js</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://abhar.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-8.png" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-8.png"
+                  alt="screenshot of design portfolio website" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Yasuruha Website</h3>
+              <p class="projects__tags">
+                <span>React Js</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://yasuruha.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-2.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-2.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Mish Haninsi Website</h3>
+              <p class="projects__tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://mish-haninsi.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-3.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-3.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Qayyim Website</h3>
+              <p class="projects__tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://qayyim.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-4.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-4.webp"
+                  alt="screenshot of video player app with grid of thumbnails of movies and TV shows" width-="343"
+                  height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Education Platform Website</h3>
+              <p class="projects__tags">
+                <span>React Js</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://mawqie-aerab.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-5.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-5.webp"
+                  alt="screenshot of 4-player memory game with circular tiles that have symbols" width-="343"
+                  height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">My Old Portfolio Website</h3>
+              <p class="projects__tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://bakr-portofolio.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-6.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-6.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Engineer Portfolio Website</h3>
+              <p class="projects__tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://ali-portofolio.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-9.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-9.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name"> Tahfizi Website</h3>
+              <p class="projects__tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://tahfizi.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-10.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-10.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name"> Vision Soft Website</h3>
+              <p class="projects__tags">
+                <span>REACT JS</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://vision-soft.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/projects/project-12.webp" loading="lazy"/>
+                <img class="projects__image" src="./assets/projects/project-12.webp"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name"> Portfolio Website</h3>
+              <p class="projects__tags">
+                <span>REACT JS</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://bakrcode.netlify.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <h3 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl" 
+    style="text-align: center; margin-top: 3rem; font-size: 2.5rem;">Companies I've Worked With</h3>
+
+      <section class="clients">
+        <div class="wrapper bottom-border">
+          <div class="clients-grid">
+            <!-- Client 1 -->
+            <div class="client-item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="500">
+              <img src="./assets/clients/tawrr.svg" alt="Tawr compny" class="client-logo" loading="lazy">
+              <h3 class="client-name">Tawr compny</h3>
+            </div>
+        </div>
+      </section>
+      <section id="contact" class="contact bg-less-dark">
+        <div class="wrapper contact__wrapper bottom-border">
+          <div class="contact__text">
+            <h2 class="contact__headline header-xl" data-aos="fade-down" data-aos-easing="linear"
+              data-aos-duration="400">Contact Me</h2>
+            <p class="contact__description" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="400">
+              I would love to hear about your project and how I could help.
+              Please fill in the form, and I'll get back to you as soon as
+              possible.
+            </p>
+          </div>
+          <form id="contact__form" class="contact__form" data-aos="fade-down" data-aos-easing="linear"
+            data-aos-duration="400">
+            <div class="contact__control">
+              <label for="name" class="visually-hidden">Name</label>
+              <input type="text" id="name" name="user_name" placeholder="Name" required />
+            </div>
+            <div class="contact__control">
+              <label for="email" class="visually-hidden">Email</label>
+              <input type="email" id="email" name="user_email" placeholder="Email" required />
+            </div>
+            <div class="contact__control">
+              <label for="message" class="visually-hidden">Message</label>
+              <textarea name="message" id="message" cols="30" rows="3" placeholder="Message" required></textarea>
+            </div>
+            <div class="contact__control align-right">
+              <input class="button" type="submit" value="Send"
+                style="border-color:var(--accent); border-width: 5px ; cursor: pointer;">
+            </div>
+          </form>
+        </div>
+        <img class="contact__rings" src="./assets/images/pattern-rings.svg" alt="" width="530" height="129" loading="lazy"/>
+      </section>
+    </main>
+
+    <footer class="footer bg-less-dark" >
+      <h2 class="visually-hidden">Footer</h2>
+      <div class="wrapper">
+        <nav class="header__nav" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+          <h2 class="visually-hidden">Navigation</h2>
+          <a href="/" class="header__home" >
+            BakrHasan<span style="color: var(--accent);">.</span>
+            <span class="visually-hidden">(to home page)</span>
+          </a>
+          <a href="https://www.facebook.com/abobakr.hasan.589?mibextid=ZbWKwL" target="_blank" class="header__social">
+            <i class="fa-brands fa-square-facebook"></i>
+          </a>
+          <a href="https://www.tiktok.com/@yasuruha/" target="_blank" class="header__social">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://instagram.com/abobakrhasan?igshid=YTQwZjQ0NmI0OA==" target="_blank" class="header__social">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@yasuruha" target="_blank" class="header__social">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+<a href="#" id="scrollTop" aria-label="Back to top">
+  <svg width="50" height="50">
+    <!-- تحديث موقع ونصف قطر الدائرة -->
+    <circle id="progressCircle" cx="25" cy="25" r="22" stroke="#4ce19e" stroke-width="4" fill="none"
+      stroke-dasharray="138" stroke-dashoffset="138" />
+  </svg>
+  <span class="arrow"><i class="fa-solid fa-angle-up"></i></span>
+</a>
+
+
+  <script type="text/javascript">
+    (function () {
+      // تهيئة EmailJS باستخدام المفتاح العام الخاص بك
+      emailjs.init('JTEBbvZll8o0M_Qvm');
+    })();
+
+    window.onload = function () {
+      document.getElementById('contact__form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // عرض رسالة التحميل مع الـ Loader
+        Swal.fire({
+          title: "Sending...",
+          html: '<div style="color: #fff; font-size: 1.2rem;">Your message is being sent, please wait.</div>',
+          icon: "info",
+          color: "#fff",
+          background: "#000",
+          confirmButtonColor: "#4ce19e",
+          allowOutsideClick: false, // يمنع إغلاق الرسالة عند النقر خارجها
+          showConfirmButton: false, // يخفي زر التأكيد
+          didOpen: () => {
+            // عرض الـ Loader
+            Swal.showLoading();
+
+            // إرسال النموذج باستخدام EmailJS
+            emailjs.sendForm('service_pgumbld', 'template_jrhcn73', document.getElementById('contact__form'))
+              .then(() => {
+                // إغلاق الـ Loader وعرض رسالة نجاح
+                Swal.fire({
+                  title: "Message sent",
+                  text: "Message sent successfully!",
+                  icon: "success",
+                  color: "#fff",
+                  background: "#000",
+                  confirmButtonColor: "#4ce19e",
+                });
+              }, (error) => {
+                // إغلاق الـ Loader وعرض رسالة خطأ
+                Swal.fire({
+                  icon: "error",
+                  title: "Failed to send",
+                  text: "Failed to send message. Please try again.",
+                  color: "#fff",
+                  background: "#000",
+                  confirmButtonColor: "#4ce19e",
+                });
+              });
+          }
+        });
+      });
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="js/main.js"></script>
+  <script src="js/butter.js"></script>
+  <script>
+    butter.init();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Splide JS -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+</body>
+
+</html>
