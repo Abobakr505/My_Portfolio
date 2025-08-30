@@ -354,22 +354,6 @@ svg {
   animation: lost 1s ease-in-out infinite;
 }
 
-.hero__mission{
-  position: absolute;
-    right: 70%;
-    bottom: 582px;
-  /* 8.125rem; */
-  z-index: -1;
-  width: 18.125rem;
-  height: auto;
-  animation: mission infinite 1s linear;
-}
-.hero__past{
-    position: absolute;
-    bottom: 51%;
-    left: 55%;
-    animation: lost infinite 1s linear;
-}
 
 .hero__circle {
   position: relative;
@@ -431,20 +415,6 @@ p > span {
   }
 }
 
-@keyframes mission {
-  0% {
-    opacity: 0.1;
-    transform: scale(1) rotate(350deg);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.1) rotate(350deg);
-  }
-  100% {
-    opacity: 0.1;
-    transform: scale(1) rotate(350deg);
-  }
-}
 @media (min-width: 37.5em) {
   .hero {
     position: relative;
@@ -587,19 +557,6 @@ p > span {
     top: 737px;
     left: -10%;
   animation: lost infinite 1s linear;
-  }
-  .hero__mission {
-    position: absolute;
-    top: 1210px;
-    right: 55%;
-    width: 12rem;
-    animation: mission infinite 1s linear;
-  }
-  .hero__past {
-    position: absolute;
-    bottom: 55%;
-    left: 23%;
-    animation: lost infinite 1s linear;
   }
 
 }
@@ -952,6 +909,18 @@ p > span {
   left: 0;
   bottom: 97px;
   translate: -75%;
+}
+
+#form_button{
+  border: 5px double var(--accent);
+  cursor: pointer;  
+}
+
+#form_button:hover{
+  background-color: var(--accent);
+  color: var(--bg-body);
+  transition: background-color 0.3s, color 0.3s;
+    
 }
 
 @media (min-width: 37.5em) {
