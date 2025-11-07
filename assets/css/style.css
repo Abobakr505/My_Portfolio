@@ -1,5 +1,7 @@
 /* GLOBAL */
 @import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+
 
 :root {
   --bg-body: hsl(0, 0%, 8%);
@@ -90,7 +92,7 @@ body,
 input,
 textarea,
 button {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'IBM Plex Sans Arabic' ,  sans-serif;
 }
 
 body {
@@ -630,7 +632,7 @@ p > span {
 /* PROJECTS */
 
 .projects__wrapper {
-  padding-block: 140px;
+  padding-block: 100px;
 }
 
 .projects__grid {
@@ -1107,4 +1109,47 @@ footer {
 .splide__arrows,
 .splide__pagination {
   display: none !important;
+}
+.reviews-slider {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.review-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem 1.5rem 3rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+}
+
+.review-card i {
+  margin-top: 1rem;
+  color: var(--accent);
+}
+
+.review-title {
+  margin: 1.2rem 0 0.6rem;
+  font-size: 1.3rem;
+  color: #fff;
+  transform: translateZ(30px);
+}
+
+.review-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+  transform: translateZ(20px);
 }

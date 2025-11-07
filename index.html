@@ -276,7 +276,7 @@
       </li>
       <!-- Slide 3 -->
       <li class="splide__slide service-card">
-        <i class="fa-solid fa-database fa-3x"></i>
+        <i class="fa-solid fa-server fa-3x"></i>
         <h3 class="service-title">Backend & Databases</h3>
         <p class="service-desc">
           Design RESTful APIs and manage data with MongoDB, PostgreSQL, or Supabase.
@@ -676,6 +676,40 @@
           </div>
         </div>
       </section>
+      <!-- ===== My Reviews Slider ===== -->
+<section id="reviews" class="splide reviews-slider" aria-label="My Reviews">
+  <h2 class="header-xl" style="text-align: center; margin: 2.5rem 0;"  data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+    My Reviews
+  </h2>
+  <div class="splide__track" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+    <ul class="splide__list">
+      <!-- مثال بطاقة -->
+      <li class="splide__slide review-card">
+        <i class="fa-solid fa-users fa-3x"></i>
+        <h3 class="review-title">OBAK Compny</h3>
+        <p class="review-desc">
+          عمل رائع جداً، محترف في التعامل والالتزام بالمواعيد.
+        </p>
+      </li>
+      <!-- Slide 2 -->
+      <li class="splide__slide review-card">
+        <i class="fa-solid fa-user-tie fa-3x"></i>
+        <h3 class="review-title">Eng/Mohammed</h3>
+        <p class="review-desc">
+          موقع رائع بمعني الكلمه وسهل الاستخدام، شكراً جزيلاً لك.
+        </p>
+      </li>
+      <!-- Slide 3 -->
+      <li class="splide__slide review-card">
+        <i class="fa-solid fa-kitchen-set fa-3x"></i>
+        <h3 class="review-title">Lazez Restaurant</h3>
+        <p class="review-desc">
+          موقع جميل ساعدنا علي تكبير حجم مطعمنا ، شكراً لك.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
       <h3 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl" 
     style="text-align: center; margin-top: 3rem; font-size: 2.5rem;">Companies I've Worked With</h3>
 
@@ -756,60 +790,6 @@
   </svg>
   <span class="arrow"><i class="fa-solid fa-angle-up"></i></span>
 </a>
-
-
-  <script type="text/javascript">
-    (function () {
-      // تهيئة EmailJS باستخدام المفتاح العام الخاص بك
-      emailjs.init('JTEBbvZll8o0M_Qvm');
-    })();
-
-    window.onload = function () {
-      document.getElementById('contact__form').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        // عرض رسالة التحميل مع الـ Loader
-        Swal.fire({
-          title: "Sending...",
-          html: '<div style="color: #fff; font-size: 1.2rem;">Your message is being sent, please wait.</div>',
-          icon: "info",
-          color: "#fff",
-          background: "#000",
-          confirmButtonColor: "#4ce19e",
-          allowOutsideClick: false, // يمنع إغلاق الرسالة عند النقر خارجها
-          showConfirmButton: false, // يخفي زر التأكيد
-          didOpen: () => {
-            // عرض الـ Loader
-            Swal.showLoading();
-
-            // إرسال النموذج باستخدام EmailJS
-            emailjs.sendForm('service_pgumbld', 'template_jrhcn73', document.getElementById('contact__form'))
-              .then(() => {
-                // إغلاق الـ Loader وعرض رسالة نجاح
-                Swal.fire({
-                  title: "Message sent",
-                  text: "Message sent successfully!",
-                  icon: "success",
-                  color: "#fff",
-                  background: "#000",
-                  confirmButtonColor: "#4ce19e",
-                });
-              }, (error) => {
-                // إغلاق الـ Loader وعرض رسالة خطأ
-                Swal.fire({
-                  icon: "error",
-                  title: "Failed to send",
-                  text: "Failed to send message. Please try again.",
-                  color: "#fff",
-                  background: "#000",
-                  confirmButtonColor: "#4ce19e",
-                });
-              });
-          }
-        });
-      });
-    };
-  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 

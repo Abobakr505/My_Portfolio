@@ -140,4 +140,77 @@ document.addEventListener('DOMContentLoaded', function () {
     'max-glare': 0.2,
   });
 });
+document.addEventListener('DOMContentLoaded', function () {
+  new Splide('#reviews', {
+    type        : 'loop',
+    perPage     : 3,
+    gap         : '2rem',
+    autoplay    : true,      // تفعيل الانتقال التلقائي
+    interval    : 3500,      // مدة العرض لكل شريحة (بالملّي)
+    pauseOnHover: false,     // لا يوقف عند التحويم
+    arrows      : false,     // إخفاء الأسهم
+    pagination  : false,     // إخفاء النقاط
+    breakpoints : {
+      1024: { perPage: 2 },
+      640 : { perPage: 1 }
+    }
+  }).mount();
 
+  // تفعيل حركة الـ 3D Tilt كما قبل
+  VanillaTilt.init(document.querySelectorAll('.review-card'), {
+    max       : 15,
+    speed     : 400,
+    glare     : true,
+    'max-glare': 0.2,
+  });
+});
+ (function () {
+      // تهيئة EmailJS باستخدام المفتاح العام الخاص بك
+      emailjs.init('JTEBbvZll8o0M_Qvm');
+    })();
+
+    window.onload = function () {
+      document.getElementById('contact__form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // عرض رسالة التحميل مع الـ Loader
+        Swal.fire({
+          title: "Sending...",
+          html: '<div style="color: #fff; font-size: 1.2rem;">Your message is being sent, please wait.</div>',
+          icon: "info",
+          color: "#fff",
+          background: "#000",
+          confirmButtonColor: "#4ce19e",
+          allowOutsideClick: false, // يمنع إغلاق الرسالة عند النقر خارجها
+          showConfirmButton: false, // يخفي زر التأكيد
+          didOpen: () => {
+            // عرض الـ Loader
+            Swal.showLoading();
+
+            // إرسال النموذج باستخدام EmailJS
+            emailjs.sendForm('service_pgumbld', 'template_jrhcn73', document.getElementById('contact__form'))
+              .then(() => {
+                // إغلاق الـ Loader وعرض رسالة نجاح
+                Swal.fire({
+                  title: "Message sent",
+                  text: "Message sent successfully!",
+                  icon: "success",
+                  color: "#fff",
+                  background: "#000",
+                  confirmButtonColor: "#4ce19e",
+                });
+              }, (error) => {
+                // إغلاق الـ Loader وعرض رسالة خطأ
+                Swal.fire({
+                  icon: "error",
+                  title: "Failed to send",
+                  text: "Failed to send message. Please try again.",
+                  color: "#fff",
+                  background: "#000",
+                  confirmButtonColor: "#4ce19e",
+                });
+              });
+          }
+        });
+      });
+    };
