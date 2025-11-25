@@ -1,8 +1,9 @@
 gsap.to(".hero__ring", {
   y: 100,
-  duration: 1,
+  duration: 1.5,
   ease: "power2.out",
   repeat: -1,
+  rotate: 360,
   yoyo: true,
   scale: 1.1,
 });
@@ -15,7 +16,7 @@ gsap.to(".hero__asterisk", {
   repeat: -1,
   yoyo: true,
   scale: 1.1,
-  
+    rotate: 360,
 });
 
 let pageTitle = document.title;
