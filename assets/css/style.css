@@ -976,7 +976,7 @@ footer {
 }
 
 .certifications {
-    margin: 100px auto;
+    margin: 70px auto;
     max-width: 1200px; /* تحديد الحد الأقصى للعرض */
     height: auto; /* تغيير إلى auto ليكون الارتفاع مرن */
     display: flex;
