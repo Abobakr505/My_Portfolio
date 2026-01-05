@@ -215,3 +215,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       });
     };
+
+
+      const skillsItems = document.querySelectorAll('.skills__item');
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target); // يشتغل مرة واحدة بس
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  skillsItems.forEach(item => observer.observe(item));
