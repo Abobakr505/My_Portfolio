@@ -1213,6 +1213,7 @@ footer {
   line-height: 1.5;
   color: #e0e0e0;
   transform: translateZ(20px);
+  text-align: center;
 }
 
 /* ============================= */
