@@ -980,7 +980,8 @@ p > span {
 #form_button:hover{
   background-color: var(--accent);
   color: var(--bg-body);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s ;
+  
     
 }
 
