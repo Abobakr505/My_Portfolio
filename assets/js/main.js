@@ -49,6 +49,9 @@ window.addEventListener("scroll", () => {
   const offset = circumference - progress * circumference;
   progressCircle.style.strokeDashoffset = offset;
 
+  // السطر الجديد
+  scrollProgressBar.style.width = (progress * 100) + "%";
+
   const scrollTopBtn = document.getElementById("scrollTop");
   if (scrollTop > 200) {
     scrollTopBtn.classList.add("show");
