@@ -1347,3 +1347,143 @@ footer {
     order: -1;
   }
 }
+
+/* ============================= */
+/* ===== STATS SECTION ========= */
+/* ============================= */
+
+.stats__wrapper {
+  padding-block: 90px;
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 3rem;
+}
+
+.stats__item {
+  position: relative;
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.stats__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(76, 225, 158, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.stats__item:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.stats__item:hover::before {
+  opacity: 1;
+}
+
+.stats__icon {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.stats__number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text1);
+  margin-bottom: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.stats__number::after {
+  content: "+";
+  color: var(--accent);
+}
+
+.stats__label {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats__number {
+    font-size: 2.5rem;
+  }
+}
+
+/* ============================= */
+/* ===== CUSTOM CURSOR ========= */
+/* ============================= */
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent);
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #00ff8c;
+}
+
+/* إخفاء الكيرسور الافتراضي وتفعيل الكاستم بس على الشاشات اللي فيها ماوس حقيقي */
+@media (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button {
+    cursor: none;
+  }
+}
+
+/* إخفاء الكيرسور الكاستم على الموبايل/التابلت تمامًا */
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}

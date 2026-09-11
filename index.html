@@ -33,6 +33,10 @@
 </head>
 
 <body>
+  <!-- Custom Cursor -->
+<div id="cursorDot" class="cursor-dot"></div>
+<div id="cursorRing" class="cursor-ring"></div>
+
   <div id="scrollProgressBar"></div>
   <div id="preloader">
     <img src="./assets/images/loader.webp" alt="" loading="lazy"><br>
@@ -98,6 +102,7 @@
           </div>
         </div>
       </section>
+      
       <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
         style="text-align: center; margin-top: 2rem;">My Skills</h2>
       <section class="skills">
@@ -251,7 +256,41 @@
         </div>
       </div>
     </section>
+<!-- ===== Stats Section ===== -->
+<section class="stats bg-less-dark">
+  <div class="wrapper stats__wrapper bottom-border">
+    <h2 class="header-xl" style="text-align:center; margin-bottom:1rem;"
+      data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+      My Journey In Numbers
+    </h2>
 
+    <div class="stats__grid">
+      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400">
+        <i class="fa-solid fa-diagram-project stats__icon"></i>
+        <h3 class="stats__number" data-target="50">0</h3>
+        <p class="stats__label">Completed Projects</p>
+      </div>
+
+      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400" data-aos-delay="100">
+        <i class="fa-solid fa-briefcase stats__icon"></i>
+        <h3 class="stats__number" data-target="3">0</h3>
+        <p class="stats__label">Years Of Experience</p>
+      </div>
+
+      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400" data-aos-delay="200">
+        <i class="fa-solid fa-users stats__icon"></i>
+        <h3 class="stats__number" data-target="5">0</h3>
+        <p class="stats__label">Happy Clients</p>
+      </div>
+
+      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400" data-aos-delay="300">
+        <i class="fa-solid fa-mug-hot stats__icon"></i>
+        <h3 class="stats__number" data-target="500">0</h3>
+        <p class="stats__label">Cups Of Tea</p>
+      </div>
+    </div>
+  </div>
+</section>
       <!-- ===== My Services Slider ===== -->
 <section id="services" class="splide services-slider "  aria-label="My Services">
   <h2 class="header-xl" style="text-align: center; margin: 2.5rem 0;"  data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
@@ -302,7 +341,27 @@
               class="projects__headline header-xl">My Projects</h2>
             <a data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
               href="#contact" id="linky"
-              class="projects__contact underline">Contact Me</a>            
+              class="projects__contact underline">Contact Me</a>     
+                        
+            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/images/projects/project-3.png" loading="lazy"/>
+                <img class="projects__image" src="./assets/images/projects/project-3.png"
+                  alt="" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name">Specialist Website</h3>
+              <p class="projects__tags">
+                                <span>Html</span>  
+                <span>Css</span>
+                <span>JavaScript</span>
+                <span>GSAP</span>
+                <span>Tailwind</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://dina-ashraf.vercel.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>       
               <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
               <picture class="projects__picture">
                 <source media="(min-width: 62.5em)" srcset="./assets/images/projects/project-13.png" loading="lazy"/>
@@ -720,29 +779,6 @@
 
               </div>
             </div>
-          
-            <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
-              <picture class="projects__picture">
-                <source media="(min-width: 62.5em)" srcset="./assets/images/projects/project-8.webp" loading="lazy"/>
-                <img class="projects__image" src="./assets/images/projects/project-8.webp"
-                  alt="" width-="343" height="253" loading="lazy"/>
-              </picture>
-              <h3 class="projects__name">Yasuruha Company Website</h3>
-              <p class="projects__tags">
-                <span>React Js</span>
-              </p>
-              <div class="projects__links">
-                <a href="https://yasuruha-two.vercel.app/" target="_blank" class="underline">View Project</a>
-
-              </div>
-            </div>
-
-
-
-
-            
-            
-
 
           </div>
         </div>

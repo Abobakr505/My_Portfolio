@@ -168,56 +168,76 @@ document.addEventListener('DOMContentLoaded', function () {
     'max-glare': 0.2,
   });
 });
- (function () {
-      // تهيئة EmailJS باستخدام المفتاح العام الخاص بك
-      emailjs.init('JTEBbvZll8o0M_Qvm');
-    })();
+// ===== Send Contact Form to Telegram =====
+const TELEGRAM_BOT_TOKEN = "8616720811:AAH3fmGsv605vfUuHqT9tHNzG82wIfDxNog"; // مثال: 123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ
+const TELEGRAM_CHAT_ID   = "7321445096"; // مثال: 123456789
 
-    window.onload = function () {
-      document.getElementById('contact__form').addEventListener('submit', function (event) {
-        event.preventDefault();
+window.onload = function () {
+  document.getElementById('contact__form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-        // عرض رسالة التحميل مع الـ Loader
-        Swal.fire({
-          title: "Sending...",
-          html: '<div style="color: #fff; font-size: 1.2rem;">Your message is being sent, please wait.</div>',
-          icon: "info",
-          color: "#fff",
-          background: "#000",
-          confirmButtonColor: "#4ce19e",
-          allowOutsideClick: false, // يمنع إغلاق الرسالة عند النقر خارجها
-          showConfirmButton: false, // يخفي زر التأكيد
-          didOpen: () => {
-            // عرض الـ Loader
-            Swal.showLoading();
+    const form = event.target;
+    const name    = form.user_name.value.trim();
+    const email   = form.user_email.value.trim();
+    const message = form.message.value.trim();
 
-            // إرسال النموذج باستخدام EmailJS
-            emailjs.sendForm('service_pgumbld', 'template_jrhcn73', document.getElementById('contact__form'))
-              .then(() => {
-                // إغلاق الـ Loader وعرض رسالة نجاح
-                Swal.fire({
-                  title: "Message sent",
-                  text: "Message sent successfully!",
-                  icon: "success",
-                  color: "#fff",
-                  background: "#000",
-                  confirmButtonColor: "#4ce19e",
-                });
-              }, (error) => {
-                // إغلاق الـ Loader وعرض رسالة خطأ
-                Swal.fire({
-                  icon: "error",
-                  title: "Failed to send",
-                  text: "Failed to send message. Please try again.",
-                  color: "#fff",
-                  background: "#000",
-                  confirmButtonColor: "#4ce19e",
-                });
+    const text =
+      `📩 *رسالة جديدة من الموقع*\n\n` +
+      `👤 *الاسم:* ${name}\n` +
+      `📧 *الإيميل:* ${email}\n` +
+      `💬 *الرسالة:*\n${message}`;
+
+    Swal.fire({
+      title: "Sending...",
+      html: '<div style="color: #fff; font-size: 1.2rem;">Your message is being sent, please wait.</div>',
+      icon: "info",
+      color: "#fff",
+      background: "#000",
+      confirmButtonColor: "#4ce19e",
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+
+        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: text,
+            parse_mode: "Markdown"
+          })
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.ok) {
+              Swal.fire({
+                title: "Message sent",
+                text: "Message sent successfully!",
+                icon: "success",
+                color: "#fff",
+                background: "#000",
+                confirmButtonColor: "#4ce19e",
               });
-          }
-        });
-      });
-    };
+              form.reset();
+            } else {
+              throw new Error("Telegram API error");
+            }
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: "error",
+              title: "Failed to send",
+              text: "Failed to send message. Please try again.",
+              color: "#fff",
+              background: "#000",
+              confirmButtonColor: "#4ce19e",
+            });
+          });
+      }
+    });
+  });
+};
 
 
       const skillsItems = document.querySelectorAll('.skills__item');
@@ -235,3 +255,100 @@ document.addEventListener('DOMContentLoaded', function () {
   );
 
   skillsItems.forEach(item => observer.observe(item));
+
+  // ===== Stats Counter Animation =====
+const statNumbers = document.querySelectorAll(".stats__number");
+
+const animateCounter = (el) => {
+  const target = +el.getAttribute("data-target");
+  const duration = 1800; // بالملي ثانية
+  const startTime = performance.now();
+
+  const step = (currentTime) => {
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    // easing (ease-out) لجعل الحركة أنعم
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = Math.floor(eased * target);
+    el.textContent = value;
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      el.textContent = target;
+    }
+  };
+
+  requestAnimationFrame(step);
+};
+
+const statsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+statNumbers.forEach((num) => statsObserver.observe(num));
+
+
+// ===== Custom Cursor (GSAP) =====
+(function () {
+  const isDesktop = window.matchMedia("(pointer: fine)").matches;
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (!isDesktop || prefersReduced) return;
+
+  const dot = document.getElementById("cursorDot");
+  const ring = document.getElementById("cursorRing");
+  if (!dot || !ring) return;
+
+  document.body.classList.add("has-custom-cursor");
+
+  let ringX = 0;
+  let ringY = 0;
+
+  window.addEventListener("mousemove", (e) => {
+    gsap.set(dot, { x: e.clientX, y: e.clientY });
+    ringX = e.clientX;
+    ringY = e.clientY;
+  });
+
+  gsap.ticker.add(() => {
+    const currentX = gsap.getProperty(ring, "x") || 0;
+    const currentY = gsap.getProperty(ring, "y") || 0;
+    gsap.set(ring, {
+      x: currentX + (ringX - currentX) * 0.18,
+      y: currentY + (ringY - currentY) * 0.18,
+    });
+  });
+
+  const growTargets = "a, button, [data-cursor-grow]";
+
+  const onEnter = () =>
+    gsap.to(ring, { scale: 2.2, duration: 0.3, opacity: 0.5 });
+  const onLeave = () =>
+    gsap.to(ring, { scale: 1, duration: 0.3, opacity: 1 });
+
+  // نستخدم event delegation عشان يشتغل حتى على عناصر بتضاف بعدين
+  document.addEventListener("mouseover", (e) => {
+    if (e.target.closest(growTargets)) onEnter();
+  });
+  document.addEventListener("mouseout", (e) => {
+    if (e.target.closest(growTargets)) onLeave();
+  });
+
+  // إخفاء الكيرسور لما يخرج من الصفحة
+  document.addEventListener("mouseleave", () => {
+    gsap.to([dot, ring], { opacity: 0, duration: 0.2 });
+  });
+  document.addEventListener("mouseenter", () => {
+    gsap.to([dot, ring], { opacity: 1, duration: 0.2 });
+  });
+})();
