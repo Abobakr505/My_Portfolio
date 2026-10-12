@@ -38,9 +38,21 @@
 <div id="cursorRing" class="cursor-ring"></div>
 
   <div id="scrollProgressBar"></div>
-  <div id="preloader">
-    <img src="./assets/images/loader.webp" alt="" loading="lazy"><br>
+<div id="preloader">
+  <div class="pl">
+    <div class="pl__logo">
+      <svg class="pl__ring" viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="pl__track" cx="60" cy="60" r="54" />
+        <circle class="pl__bar" cx="60" cy="60" r="54" />
+      </svg>
+      <img class="pl__img" src="./assets/images/loader.webp" alt="">
+    </div>
+
+    <div class="pl__brand">BakrHasan<span>.</span></div>
+    <div class="pl__role">Full Stack &amp; Mobile Developer</div>
+    <div class="pl__count"><span id="plCount">0</span>%</div>
   </div>
+</div>
   <div id="butter">
     <header class="header">
       <h2 class="visually-hidden">Header</h2>
@@ -68,40 +80,61 @@
     </header>
 
     <main id="main">
-      <section class="hero">
-        <div class="wrapper hero__wrapper bottom-border">
-          <div class="hero__content">
-            <picture>
-              <source media="(min-width: 62.5em)" srcset="./assets/images/BakrHasan.webp" loading="lazy"/>
-              <source media="(min-width: 37.5em)" srcset="./assets/images/BakrHasan.webp" loading="lazy"/>
-              <img class="hero__image" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500"
-                src="./assets/images/BakrHasan.webp" alt="picture " width-="174" height="383" loading="lazy" />
-            </picture>
-            <img class="hero__rings" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="500"
-              src="./assets/images/pattern-rings.svg" alt="" width="530" height="129" loading="lazy"/>
-            <img class="hero__circle" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400"
-              src="./assets/images/pattern-circle.svg" alt="" width="129" height="129" loading="lazy"/>
-            <img class="hero__ring" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400"
-              src="./assets/images/star.webp" alt="" width="129" height="129" style="filter:opacity(0.2);" loading="lazy"/>
-            <img class="hero__asterisk" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400"
-              src="./assets/images/star.webp" alt="" width="129" height="129" style="filter:opacity(0.5);" loading="lazy"/>
-            <div class="hero__text">
-              <h1 class="hero__headline header-xl" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400">
-                Alsalam Ealaykum <br />
-                I'm <span>Bakr Hasan</span><span style="color: var(--accent);">.</span>
-              </h1>
-              <p class="hero__description " data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
-                Alsalam Ealaykum, I am Bakr Hasan, a passionate <span style="color: #fff;"> FullStack Developer </span> and <span style="color: #fff;"> MobileApp Developer </span>
-                with a strong ability to build seamless and efficient web applications and mobile applications . I specialize in both front-end
-                and back-end development, creating user-friendly interfaces and robust server-side solutions. I am
-                always eager to learn, innovate, and deliver high-quality, scalable digital solutions that make a real
-                impact.
-              </p>
-              <a href="./assets/images/Abobakr_Hasan_CV.pdf"  class="hero__contact underline"  data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500" download>Download CV</a>
-            </div>
-          </div>
-        </div>
-      </section>
+<section class="hx">
+  <div class="wrapper hx__wrapper bottom-border">
+
+    <div class="hx__text">
+      <div class="hx__badge">
+        <span class="hx__dot"></span> Available for work
+      </div>
+
+      <p class="hx__greeting">Alsalam Ealaykum 👋</p>
+
+      <h1 class="hx__title">
+        I'm Bakr Hasan <span style="color: var(--accent);">.</span>
+      </h1>
+
+      <div class="hx__role">
+        <span class="hx__typed"></span><span class="hx__caret"></span>
+      </div>
+
+      <p class="hx__desc">
+        I build seamless <span class="line_out" style="color:#fff;">web</span> and
+        <span class="line_out" style="color:#fff;">mobile</span> applications. I specialize in both
+        front-end and back-end development, creating user-friendly interfaces and
+        robust server-side solutions that are fast, scalable, and make a real impact.
+      </p>
+
+      <div class="hx__cta">
+        <a href="#featured" data-scroll="#featured" class="hx__btn hx__btn--primary">
+          View Projects <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="./assets/images/Abobakr_Hasan_CV.pdf" class="hx__btn hx__btn--ghost" download>
+          <i class="fa-solid fa-download"></i> Download CV
+        </a>
+      </div>
+
+      <div class="hx__stats">
+        <div><b>50</b><span>Projects</span></div>
+        <div><b>3</b><span>Years Exp.</span></div>
+        <div><b>5</b><span>Clients</span></div>
+      </div>
+    </div>
+
+    <div class="hx__visual">
+        <img class="hx__asterisk" src="./assets/images/star.webp" alt="" width="129" height="129" loading="lazy">
+
+      <div class="hx__frame">
+        <img src="./assets/images/BakrHasan.webp" alt="Bakr Hasan" fetchpriority="high">
+      </div>
+      <div class="hx__chip hx__chip--1"><i class="fa-brands fa-react"></i> React</div>
+      <div class="hx__chip hx__chip--2"><i class="ri-supabase-fill"></i> Supabase</div>
+      <div class="hx__chip hx__chip--3"><i class="fa-brands fa-tailwind-css"></i> Tailwind</div>
+      <div class="hx__chip hx__chip--4"><i class="fa-solid fa-mobile-screen-button"></i> React Native</div>
+    </div>
+
+  </div>
+</section>
       
       <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
         style="text-align: center; margin-top: 2rem;">My Skills</h2>
@@ -243,93 +276,156 @@
           </div>
         </div>
       </section>
-      <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
-        class="projects__headline header-xl" style="text-align: center; margin-top: 3.5rem;">My Certifications</h2>
-      <section class="certification_section">
-      <div class="wrapper bottom-border " data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
-        <div class="certifications">
-          <img class="certificate" src="./assets/images/certifications/certificate-1.webp" alt="" loading="lazy">
-          <img class="certificate" src="./assets/images/certifications/certificate-2.webp" alt="" loading="lazy">
-          <img class="certificate" src="./assets/images/certifications/certificate-3.webp" alt="" loading="lazy">
-          <img class="certificate" src="./assets/images/certifications/certificate-4.webp" alt="" loading="lazy">
-          <img class="certificate" src="./assets/images/certifications/certificate-5.webp" alt="" loading="lazy">
-        </div>
-      </div>
-    </section>
-<!-- ===== Stats Section ===== -->
-<section class="stats bg-less-dark">
-  <div class="wrapper stats__wrapper bottom-border">
-    <h2 class="header-xl" style="text-align:center; margin-bottom:1rem;"
-      data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
-      My Journey In Numbers
-    </h2>
+<h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
+  style="text-align: center; margin-top: 3.5rem;">My Certifications</h2>
+<p class="certs__intro" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  Courses and credentials I've completed along the way.
+</p>
+<section class="certification_section">
+  <div class="wrapper bottom-border">
+    <div class="certs">
 
-    <div class="stats__grid">
-      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400">
-        <i class="fa-solid fa-diagram-project stats__icon"></i>
-        <h3 class="stats__number" data-target="50">0</h3>
-        <p class="stats__label">Completed Projects</p>
-      </div>
+<a class="cert" data-fancybox="certs"
+   data-caption="Certificate Title 1 — Issuer"
+   href="./assets/images/certifications/certificate-1.webp"
+   data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  <div class="cert__img">
+    <img src="./assets/images/certifications/certificate-1.webp" alt="Certificate Title 1" loading="lazy">
+    <span class="cert__no">01</span>
+    <span class="cert__badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+    <span class="cert__zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+  </div>
+  <div class="cert__info">
+    <h3 class="cert__title">Certificate Title 1</h3>
+    <span class="cert__issuer">Issuer · 2025</span>
+  </div>
+</a>
+     <a class="cert" data-fancybox="certs"
+   data-caption="Digital Marketing Certificate From Google — Issuer"
+   href="./assets/images/certifications/certificate-1.webp"
+   data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  <div class="cert__img">
+    <img src="./assets/images/certifications/certificate-1.webp" alt="Certificate Title 1" loading="lazy">
+    <span class="cert__no">01</span>
+    <span class="cert__badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+    <span class="cert__zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+  </div>
+  <div class="cert__info">
+    <h3 class="cert__title">Google Certificate  </h3>
+    <span class="cert__issuer">Issuer · 2022</span>
+  </div>
+</a>
+<a class="cert" data-fancybox="certs"
+   data-caption="Html Course Certificate From Sololearn — Issuer"
+   href="./assets/images/certifications/certificate-2.webp"
+   data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  <div class="cert__img">
+    <img src="./assets/images/certifications/certificate-2.webp" alt="Certificate Title 2" loading="lazy">
+    <span class="cert__no">02</span>
+    <span class="cert__badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+    <span class="cert__zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+  </div>
+  <div class="cert__info">
+    <h3 class="cert__title">Sololearn Certificate </h3>
+    <span class="cert__issuer">Issuer · 2023</span>
+  </div>
+</a>
+<a class="cert" data-fancybox="certs"
+   data-caption="React Js Course Certificate From MahaTech — Issuer"
+   href="./assets/images/certifications/certificate-3.webp"
+   data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  <div class="cert__img">
+    <img src="./assets/images/certifications/certificate-3.webp" alt="Certificate Title 3" loading="lazy">
+    <span class="cert__no">03</span>
+    <span class="cert__badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+    <span class="cert__zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+  </div>
+  <div class="cert__info">
+    <h3 class="cert__title">MahaTech Certificate  </h3>
+    <span class="cert__issuer">Issuer · 2024</span>
+  </div>
+</a>
+<a class="cert" data-fancybox="certs"
+   data-caption="Essentianls of Chatgpt Course Certificate From  Almdrasa — Issuer"
+   href="./assets/images/certifications/certificate-4.webp"
+   data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  <div class="cert__img">
+    <img src="./assets/images/certifications/certificate-4.webp" alt="Certificate Title 4" loading="lazy">
+    <span class="cert__no">04</span>
+    <span class="cert__badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+    <span class="cert__zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+  </div>
+  <div class="cert__info">
+    <h3 class="cert__title">Almdrasa Certificate  </h3>
+    <span class="cert__issuer">Issuer · 2025</span>
+  </div>
+</a>
+<a class="cert" data-fancybox="certs"
+   data-caption="Git&Github Course Certificate From  Almdrasa — Issuer"
+   href="./assets/images/certifications/certificate-5.webp"
+   data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  <div class="cert__img">
+    <img src="./assets/images/certifications/certificate-5.webp" alt="Certificate Title 5" loading="lazy">
+    <span class="cert__no">05</span>
+    <span class="cert__badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+    <span class="cert__zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+  </div>
+  <div class="cert__info">
+    <h3 class="cert__title">Almdrasa Certificate  </h3>
+    <span class="cert__issuer">Issuer · 2025</span>
+  </div>
+</a>
 
-      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400" data-aos-delay="100">
-        <i class="fa-solid fa-briefcase stats__icon"></i>
-        <h3 class="stats__number" data-target="3">0</h3>
-        <p class="stats__label">Years Of Experience</p>
-      </div>
-
-      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400" data-aos-delay="200">
-        <i class="fa-solid fa-users stats__icon"></i>
-        <h3 class="stats__number" data-target="5">0</h3>
-        <p class="stats__label">Happy Clients</p>
-      </div>
-
-      <div class="stats__item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400" data-aos-delay="300">
-        <i class="fa-solid fa-mug-hot stats__icon"></i>
-        <h3 class="stats__number" data-target="500">0</h3>
-        <p class="stats__label">Cups Of Tea</p>
-      </div>
     </div>
   </div>
 </section>
+
       <!-- ===== My Services Slider ===== -->
-<section id="services" class="splide services-slider "  aria-label="My Services">
-  <h2 class="header-xl" style="text-align: center; margin: 2.5rem 0;"  data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+<!-- ===== My Services Slider ===== -->
+<section id="services" class="splide services-slider" aria-label="My Services">
+  <h2 class="header-xl" style="text-align: center; margin: 2.5rem 0 0.5rem;"
+    data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
     My Services
   </h2>
+  <p class="slider-intro" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+    From idea to launch, everything you need to ship a product.
+  </p>
+
   <div class="splide__track" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
     <ul class="splide__list">
-      <!-- مثال بطاقة -->
+
       <li class="splide__slide service-card">
-        <i class="fa-solid fa-globe fa-3x"></i>
+        <span class="service-card__no">01</span>
+        <div class="service-card__icon"><i class="fa-solid fa-globe"></i></div>
         <h3 class="service-title">Web Development</h3>
-        <p class="service-desc">
-          Craft responsive, high‑performance websites with React &amp; Next.js.
-        </p>
+        <p class="service-desc">Responsive, high-performance websites and web apps built with React &amp; Next.js.</p>
+        <ul class="service-card__tags"><li>React</li><li>Next.js</li><li>Tailwind</li></ul>
       </li>
-      <!-- Slide 2 -->
+
       <li class="splide__slide service-card">
-        <i class="fa-solid fa-mobile-screen-button fa-3x"></i>
+        <span class="service-card__no">02</span>
+        <div class="service-card__icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
         <h3 class="service-title">Mobile Apps</h3>
-        <p class="service-desc">
-          Develop cross‑platform mobile apps with React Native 
-        </p>
+        <p class="service-desc">Cross-platform mobile apps for iOS and Android with React Native.</p>
+        <ul class="service-card__tags"><li>React Native</li><li>Expo</li></ul>
       </li>
-      <!-- Slide 3 -->
+
       <li class="splide__slide service-card">
-        <i class="fa-solid fa-server fa-3x"></i>
-        <h3 class="service-title">Backend & Databases</h3>
-        <p class="service-desc">
-          Design RESTful APIs and manage data with MongoDB, PostgreSQL, or Supabase.
-        </p>
+        <span class="service-card__no">03</span>
+        <div class="service-card__icon"><i class="fa-solid fa-server"></i></div>
+        <h3 class="service-title">Backend &amp; Databases</h3>
+        <p class="service-desc">RESTful APIs and reliable data layers with MongoDB, PostgreSQL, or Supabase.</p>
+        <ul class="service-card__tags"><li>Supabase</li><li>PostgreSQL</li><li>Go</li></ul>
       </li>
-      <!-- Slide 4 -->
+
       <li class="splide__slide service-card">
-        <i class="fa-solid fa-cloud-arrow-up fa-3x"></i>
+        <span class="service-card__no">04</span>
+        <div class="service-card__icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
         <h3 class="service-title">Cloud Deployment</h3>
-        <p class="service-desc">
-          Deploy and scale applications on Vercel, or Netlify.
-        </p>
+        <p class="service-desc">Fast, scalable deployment on Vercel or Netlify with custom domains.</p>
+        <ul class="service-card__tags"><li>Vercel</li><li>Netlify</li></ul>
       </li>
+
     </ul>
   </div>
 </section>
@@ -337,6 +433,11 @@
       <section class="projects">
         <div class="wrapper projects__wrapper">
           <div class="projects__grid">
+            <div class="projects__filters" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+  <button type="button" class="pf is-active" data-filter="all">All</button>
+  <button type="button" class="pf" data-filter="web">Web</button>
+  <button type="button" class="pf" data-filter="mobile">Mobile</button>
+</div>
             <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
               class="projects__headline header-xl">My Projects</h2>
             <a data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
@@ -891,57 +992,84 @@
   </div>
 </section>
       <!-- ===== My Startup Section ===== -->
-<section class="startup bg-less-dark">
+<!-- ===== My Startup Section ===== -->
+<section class="startup sx bg-less-dark">
   <div class="wrapper startup__wrapper bottom-border">
-    
-    <h2 class="header-xl"
-      data-aos="fade-down"
-      data-aos-easing="linear"
-      data-aos-duration="400"
-      style="text-align:center; margin-bottom:3rem;">
-      My Startup 
+
+    <h2 class="header-xl" style="text-align:center; margin-bottom:3.5rem;"
+      data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+      My Startup
     </h2>
 
-    <div class="startup__content">
+    <div class="sx__content">
 
-      <div class="startup__text"
-        data-aos="fade-right"
-        data-aos-easing="linear"
-        data-aos-duration="400">
-        <h3 class="startup__title">
-          Yasuruha Compny
-        </h3>
+      <!-- Text -->
+      <div class="sx__text" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="400">
+        <span class="sx__badge"><i class="fa-solid fa-rocket"></i> Founder &amp; CEO</span>
 
-        <p class="startup__description">
-          Yasuruha is a technology startup focused on building modern, scalable, and high-quality digital solutions.
-          We help startups, companies, and individuals turn their ideas into real products through
-          web applications, mobile apps, and custom systems.
+        <h3 class="sx__title">Yasuruha Company</h3>
+
+        <p class="sx__desc">
+          Yasuruha is a technology startup focused on building modern, scalable, and high-quality
+          digital solutions. We help startups, companies, and individuals turn their ideas into
+          real products through web applications, mobile apps, and custom systems.
+        </p>
+        <p class="sx__desc">
+          Our mission is to simplify technology and deliver powerful solutions that are fast,
+          secure, and user-friendly, using the latest technologies such as React, Supabase,
+          and cloud services.
         </p>
 
-        <p class="startup__description">
-          Our mission is to simplify technology and deliver powerful solutions that are fast, secure,
-          and user-friendly, using the latest technologies such as React, Supabase, and Cloud services.
-        </p>
-
-        <div class="startup__features">
-          <span><span style="color: var(--accent);">✔</span> Web & Mobile Solutions</span>
-          <span><span style="color: var(--accent);">✔</span> Startup MVP Development</span>
-          <span><span style="color: var(--accent);">✔</span> Scalable Backend Systems</span>
-          <span><span style="color: var(--accent);">✔</span> UI/UX Focused Design</span>
+        <div class="sx__features">
+          <div class="sx__feature">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>Web &amp; Mobile Solutions</span>
+          </div>
+          <div class="sx__feature">
+            <i class="fa-solid fa-rocket"></i>
+            <span>Startup MVP Development</span>
+          </div>
+          <div class="sx__feature">
+            <i class="fa-solid fa-server"></i>
+            <span>Scalable Backend Systems</span>
+          </div>
+          <div class="sx__feature">
+            <i class="fa-solid fa-pen-ruler"></i>
+            <span>UI/UX Focused Design</span>
+          </div>
         </div>
- 
-        <a href="https://yasuruha.vercel.app/" target="_blank" class="underline startup__cta">
-          Work With Us
-        </a>
+
+        <div class="sx__stats">
+          <div><b>50</b><span>Projects</span></div>
+          <div><b>5</b><span>Clients</span></div>
+          <div><b>3</b><span>Years</span></div>
+        </div>
+
+        <div class="sx__cta">
+          <a href="https://yasuruha.vercel.app/" target="_blank" class="sx__btn sx__btn--primary">
+            Work With Us <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#contact" data-scroll="#contact" class="sx__btn sx__btn--ghost">
+            <i class="fa-regular fa-envelope"></i> Contact
+          </a>
+        </div>
       </div>
 
-      <div class="startup__visual"
-        data-aos="zoom-in"
-        data-aos-easing="linear"
-        data-aos-duration="400">
-        <img src="./assets/images/about.webp"
-          alt="Startup Illustration"
-          loading="lazy">
+      <!-- Visual -->
+      <div class="sx__visual" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="400">
+        <span class="sx__ring"></span>
+
+        <div class="sx__frame">
+          <img src="./assets/images/startup.jpg" alt="Yasuruha startup" loading="lazy">
+        </div>
+
+        <div class="sx__card">
+          <span class="sx__card-icon"><i class="fa-solid fa-bolt"></i></span>
+          <div>
+            <b>Yasuruha</b>
+            <small>Tech Startup</small>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -949,99 +1077,210 @@
 </section>
 
       <!-- ===== My Reviews Slider ===== -->
+<!-- ===== My Reviews Slider ===== -->
 <section id="reviews" class="splide reviews-slider" aria-label="My Reviews">
-  <h2 class="header-xl" style="text-align: center; margin: 2.5rem 0;"  data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+  <h2 class="header-xl" style="text-align: center; margin: 2.5rem 0 0.5rem;"
+    data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
     My Reviews
   </h2>
+  <p class="slider-intro" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+    What clients say about working with me.
+  </p>
+
   <div class="splide__track" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
     <ul class="splide__list">
-      <!-- مثال بطاقة -->
+
       <li class="splide__slide review-card">
-        <i class="ri-user-5-line fa-3x"></i> 
-        <h3 class="review-title">Eng/Ali Hasan</h3>
-        <p class="review-desc">
-          عمل رائع جداً، أنصح بالتعامل معه بشده.
-        </p>
-      </li> 
-      <!-- Slide 3 -->
+        <i class="fa-solid fa-quote-right review-card__quote"></i>
+        <div class="review-card__stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-desc" dir="auto">عمل رائع جداً، أنصح بالتعامل معه بشدة.</p>
+        <div class="review-card__author">
+          <span class="review-card__avatar"><i class="ri-user-5-line"></i></span>
+          <div>
+            <h3 class="review-title">Eng/Ali Hasan</h3>
+            <small>CGI Artist</small>
+          </div>
+        </div>
+      </li>
+
       <li class="splide__slide review-card">
-        <i class="ri-restaurant-fill fa-3x"></i>
-        <h3 class="review-title">Lazez Restaurant</h3>
-        <p class="review-desc">
-          موقع جميل ساعدنا علي تكبير حجم مطعمنا ، شكراً لك.
-        </p>
+        <i class="fa-solid fa-quote-right review-card__quote"></i>
+        <div class="review-card__stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-desc" dir="auto">موقع جميل ساعدنا على تكبير حجم مطعمنا، شكراً لك.</p>
+        <div class="review-card__author">
+          <span class="review-card__avatar"><i class="ri-restaurant-fill"></i></span>
+          <div>
+            <h3 class="review-title">Lazez Restaurant</h3>
+            <small>Restaurant</small>
+          </div>
+        </div>
       </li>
-      <!-- Slide 2 -->
+
       <li class="splide__slide review-card">
-        <i class="ri-user-5-line fa-3x"></i>
-        <h3 class="review-title">Eng/Mohammed Kamal</h3>
-        <p class="review-desc">
-          موقع رائع بمعني الكلمه وسهل الاستخدام، شكراً جزيلاً لك.
-        </p>
+        <i class="fa-solid fa-quote-right review-card__quote"></i>
+        <div class="review-card__stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-desc" dir="auto">موقع رائع بمعنى الكلمة وسهل الاستخدام، شكراً جزيلاً لك.</p>
+        <div class="review-card__author">
+          <span class="review-card__avatar"><i class="ri-user-5-line"></i></span>
+          <div>
+            <h3 class="review-title">Eng/Mohammed Kamal</h3>
+            <small>Engineer</small>
+          </div>
+        </div>
       </li>
-            <!-- Slide 2 -->
+
       <li class="splide__slide review-card">
-        <i class="ri-user-5-line fa-3x"></i>
-        <h3 class="review-title">Mr/Hamed Elsharif</h3>
-        <p class="review-desc">
-        الموقع رائع جدا بمعني الكلمه يعرض كل شئ بأحترافيه 
-        </p>
+        <i class="fa-solid fa-quote-right review-card__quote"></i>
+        <div class="review-card__stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-desc" dir="auto">الموقع رائع جدًا بمعنى الكلمة، يعرض كل شيء باحترافية.</p>
+        <div class="review-card__author">
+          <span class="review-card__avatar"><i class="ri-user-5-line"></i></span>
+          <div>
+            <h3 class="review-title">Mr/Hamed Elsharif</h3>
+            <small>Client</small>
+          </div>
+        </div>
       </li>
-            <li class="splide__slide review-card">
-        <i class="ri-briefcase-4-fill fa-3x"></i>
-        <h3 class="review-title">OBAK Compny</h3>
-        <p class="review-desc">
-        متجر جميل جدا ساعدنا علي تكبير حجم مبيعاتنا  
-        </p>
+
+      <li class="splide__slide review-card">
+        <i class="fa-solid fa-quote-right review-card__quote"></i>
+        <div class="review-card__stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-desc" dir="auto">متجر جميل جدًا ساعدنا على تكبير حجم مبيعاتنا.</p>
+        <div class="review-card__author">
+          <span class="review-card__avatar"><i class="ri-briefcase-4-fill"></i></span>
+          <div>
+            <h3 class="review-title">OBAK Company</h3>
+            <small>E-commerce</small>
+          </div>
+        </div>
       </li>
+
     </ul>
   </div>
 </section>
-      <h3 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl" 
-    style="text-align: center; margin-top: 3rem; font-size: 2.5rem;">Companies I've Worked With</h3>
+<h2 class="header-xl" style="text-align: center; margin-top: 3.5rem; margin-bottom: 0.5rem;"
+  data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+  Companies I've Worked With
+</h2>
+<p class="slider-intro" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+  Teams and brands that trusted me with their digital products.
+</p>
 
-      <section class="clients">
-        <div class="wrapper bottom-border">
-          <div class="clients-grid">
-            <!-- Client 1 -->
-            <div class="client-item" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="500">
-              <img src="./assets/images/companies/tawrr.svg" alt="Tawr Company" class="client-logo" loading="lazy">
-              <h3 class="client-name">Tawr Company</h3>
-            </div>
+<section class="clients">
+  <div class="wrapper bottom-border">
+    <div class="clx">
+
+      <!-- شركة -->
+      <article class="clx__card" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="500">
+        <div class="clx__logo">
+          <img src="./assets/images/companies/tawrr.svg" alt="Tawr Company logo" loading="lazy">
         </div>
-      </section>
-      <section id="contact" class="contact bg-less-dark">
-        <div class="wrapper contact__wrapper bottom-border">
-          <div class="contact__text">
-            <h2 class="contact__headline header-xl" data-aos="fade-down" data-aos-easing="linear"
-              data-aos-duration="400">Contact Me</h2>
-            <p class="contact__description" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="400">
-              I would love to hear about your project and how I could help.
-              Please fill in the form, and I'll get back to you as soon as
-              possible.
-            </p>
-          </div>
-          <form id="contact__form" class="contact__form" data-aos="fade-down" data-aos-easing="linear"
-            data-aos-duration="400">
-            <div class="contact__control">
-              <label for="name" class="visually-hidden">Name</label>
-              <input type="text" id="name" name="user_name" placeholder="Name" required />
-            </div>
-            <div class="contact__control">
-              <label for="email" class="visually-hidden">Email</label>
-              <input type="email" id="email" name="user_email" placeholder="Email" required />
-            </div>
-            <div class="contact__control">
-              <label for="message" class="visually-hidden">Message</label>
-              <textarea name="message" id="message" cols="30" rows="3" placeholder="Message" required></textarea>
-            </div>
-            <div class="contact__control align-right">
-              <input class="button" type="submit" value="Send" id="form_button">
-            </div>
-          </form>
+        <h3 class="clx__name">Tawr Company</h3>
+        <span class="clx__role">Web Development</span>
+      </article>
+
+      <!-- لإضافة شركة أخرى انسخ كتلة <article class="clx__card"> السابقة -->
+
+      <!-- كارت الدعوة -->
+      <a href="#contact" data-scroll="#contact" class="clx__card clx__card--cta"
+         data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="500" data-aos-delay="100">
+        <div class="clx__logo clx__logo--cta">
+          <i class="fa-solid fa-plus"></i>
         </div>
-        <img class="contact__rings" src="./assets/images/pattern-rings.svg" alt="" width="530" height="129" loading="lazy"/>
-      </section>
+        <h3 class="clx__name">Your company here</h3>
+        <span class="clx__role">Let's work together</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+<section id="contact" class="contact cx bg-less-dark">
+  <div class="wrapper cx__wrapper bottom-border">
+
+    <!-- Text -->
+    <div class="cx__text">
+      <span class="cx__badge" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+        <i class="fa-regular fa-comments"></i> Let's talk
+      </span>
+
+      <h2 class="cx__headline" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+        Let's work together<span style="color: var(--accent);">.</span>
+      </h2>
+
+      <p class="cx__desc" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="400">
+        I would love to hear about your project and how I could help.
+        Please fill in the form, and I'll get back to you as soon as possible.
+      </p>
+
+      <ul class="cx__links" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+        <li>
+          <a class="cx__link" href="https://www.linkedin.com/in/bakr-hasan" target="_blank" rel="noopener">
+            <span class="cx__link-icon"><i class="fa-brands fa-linkedin"></i></span>
+            <span class="cx__link-text"><b>LinkedIn</b><small>bakr-hasan</small></span>
+            <i class="fa-solid fa-arrow-up-right-from-square cx__link-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a class="cx__link" href="https://github.com/Abobakr505" target="_blank" rel="noopener">
+            <span class="cx__link-icon"><i class="fa-brands fa-github"></i></span>
+            <span class="cx__link-text"><b>GitHub</b><small>Abobakr505</small></span>
+            <i class="fa-solid fa-arrow-up-right-from-square cx__link-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a class="cx__link" href="https://www.facebook.com/abobakr.hasan.589?mibextid=ZbWKwL" target="_blank" rel="noopener">
+            <span class="cx__link-icon"><i class="fa-brands fa-facebook"></i></span>
+            <span class="cx__link-text"><b>Facebook</b><small>abobakr.hasan</small></span>
+            <i class="fa-solid fa-arrow-up-right-from-square cx__link-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a class="cx__link" href="https://linktr.ee/yasuruha1" target="_blank" rel="noopener">
+            <span class="cx__link-icon"><i class="fa-brands fa-linktree"></i></span>
+            <span class="cx__link-text"><b>Linktree</b><small>yasuruha1</small></span>
+            <i class="fa-solid fa-arrow-up-right-from-square cx__link-arrow"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Form (نفس الـ id والـ name المستخدمة في main.js) -->
+    <form id="contact__form" class="cx__form" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="400">
+      <div class="cx__field">
+        <i class="fa-regular fa-user"></i>
+        <input type="text" id="name" name="user_name" placeholder=" " autocomplete="name" required />
+        <label for="name">Name</label>
+      </div>
+
+      <div class="cx__field">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email" id="email" name="user_email" placeholder=" " autocomplete="email" required />
+        <label for="email">Email</label>
+      </div>
+
+      <div class="cx__field cx__field--area">
+        <i class="fa-regular fa-message"></i>
+        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+        <label for="message">Message</label>
+      </div>
+
+      <button type="submit" id="form_button" class="cx__submit">
+        Send Message <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+
+  </div>
+</section>
     </main>
 
     <footer class="footer bg-less-dark" >
@@ -1070,20 +1309,19 @@
     </footer>
   </div>
 <a href="#" id="scrollTop" aria-label="Back to top">
-  <svg width="50" height="50">
-    <!-- تحديث موقع ونصف قطر الدائرة -->
-    <circle id="progressCircle" cx="25" cy="25" r="22" stroke="#4ce19e" stroke-width="4" fill="none"
-      stroke-dasharray="138" stroke-dashoffset="138" />
+  <svg viewBox="0 0 56 56" aria-hidden="true">
+    <circle class="st__track" cx="28" cy="28" r="25" />
+    <circle id="progressCircle" cx="28" cy="28" r="25" />
   </svg>
-  <span class="arrow"><i class="fa-solid fa-angle-up"></i></span>
+  <span class="arrow"><i class="fa-solid fa-arrow-up"></i></span>
+  <span class="st__pct"><span id="scrollPct">0</span>%</span>
 </a>
-
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+<script>
+  AOS.init({ startEvent: "preloader:done" });
+</script>
   <script src="./assets/js/main.js"></script>
   <script src="/assets/js/butter.js"></script>
   <script>
