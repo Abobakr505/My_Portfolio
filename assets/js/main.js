@@ -715,3 +715,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// ===== Hero: waving hand =====
+document.addEventListener("DOMContentLoaded", () => {
+  const hand = document.querySelector(".hx__wave");
+  const greeting = document.querySelector(".hx__greeting");
+  if (!hand || !greeting) return;
+
+  const wave = () => {
+    hand.classList.remove("is-waving");
+    void hand.offsetWidth;            // إعادة تشغيل الحركة
+    hand.classList.add("is-waving");
+  };
+
+  // أول تلويح بعد زوال الـ preloader (مع تأخير بسيط حتى يظهر النص أولًا)
+  const first = () => setTimeout(wave, 900);
+  if (window.__preloaderDone) first();
+  else document.addEventListener("preloader:done", first, { once: true });
+
+  // تلويح عند المرور بالماوس أو اللمس
+  greeting.addEventListener("mouseenter", wave);
+  greeting.addEventListener("touchstart", wave, { passive: true });
+});

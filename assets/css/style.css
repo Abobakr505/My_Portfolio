@@ -458,7 +458,7 @@ svg {
   background-repeat: repeat-x;
   background-size: 8px 4px;
 }
-p > span {
+/* p > span {
   background-image: linear-gradient(
     to right,
     var(--accent) 75%,
@@ -467,7 +467,7 @@ p > span {
   background-position: 0 1.18em;
   background-repeat: repeat-x;
   background-size: 8px 4px;
-}
+} */
 .hero__description {
   margin-block-end: 24px;
 }
@@ -4784,3 +4784,32 @@ html.is-loading body {
   .case__main::before { transition: none; }
 }
 
+/* ===== Hero: waving hand ===== */
+.hx__greeting {
+  cursor: default;
+}
+
+.hx__wave {
+  display: inline-block;
+  transform-origin: 70% 80%;        /* محور الدوران عند الرسغ */
+  will-change: transform;
+}
+
+.hx__wave.is-waving {
+  animation: hxWave 2.2s ease-in-out infinite;
+}
+
+@keyframes hxWave {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(14deg); }
+  20%  { transform: rotate(-8deg); }
+  30%  { transform: rotate(14deg); }
+  40%  { transform: rotate(-4deg); }
+  50%  { transform: rotate(10deg); }
+  60%  { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hx__wave.is-waving { animation: none; }
+}
