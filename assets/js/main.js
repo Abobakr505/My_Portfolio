@@ -700,3 +700,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// ===== Featured: photo count + "+N" badge =====
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".case").forEach((box) => {
+    const main = box.querySelector(".case__main");
+    const thumbs = box.querySelectorAll(".case__thumbs a");
+    if (!main) return;
+
+    main.dataset.count = 1 + thumbs.length + " photos";
+
+    if (thumbs.length > 4) {
+      thumbs[3].dataset.more = thumbs.length - 4;
+    }
+  });
+});

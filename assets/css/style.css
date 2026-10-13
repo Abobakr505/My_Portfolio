@@ -1598,6 +1598,7 @@ footer {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
 }
 
 .case__stats div {
@@ -1821,8 +1822,8 @@ footer {
   gap: 36px;
   max-width: 480px;
   margin-inline: auto;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .hx__stats b {
@@ -1910,6 +1911,7 @@ footer {
 
 /* ----- Tablet ----- */
 @media (min-width: 37.5em) {
+
   .hx__visual { width: min(100%, 380px); }
   .hx__chip { font-size: 0.9rem; }
   .hx__chip--1 { left: -10%; }
@@ -1934,7 +1936,6 @@ footer {
 
   .hx__cta,
   .hx__stats { justify-content: flex-start; }
-
   .hx__visual {
     order: 0;
     width: min(100%, 440px);
@@ -2342,6 +2343,7 @@ footer {
     opacity: 1;
     translate: 0 0;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2483,6 +2485,9 @@ footer {
     height: 38px;
     font-size: 1rem;
     scale: 1;
+  }
+      .hx__cta{
+    flex-direction: column;
   }
 }
 
@@ -2657,7 +2662,6 @@ footer {
 /* طبقة الزوم أنعم */
 .cert__zoom {
   z-index: 4;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.7));
   backdrop-filter: blur(2px);
 }
 
@@ -4523,3 +4527,260 @@ html.is-loading body {
 
   #scrollTop.is-go .arrow { animation: none; }
 }
+
+/* ============================= */
+/* ===== FEATURED (UPGRADE) ==== */
+/* ============================= */
+
+.case {
+  gap: 48px;
+}
+
+/* ----- الصورة الرئيسية في إطار متصفح ----- */
+.case__main {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 40px rgba(76, 225, 158, 0.08);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.case__main:hover {
+  border-color: rgba(76, 225, 158, 0.6);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5), 0 0 50px rgba(76, 225, 158, 0.15);
+}
+
+.case__bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 36px;
+  padding: 0 14px;
+  background: #1f1f1f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.case__dots {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-right: 34px;               /* مساحة للنقطتين الإضافيتين */
+  background: #ff5f57;
+  border-radius: 50%;
+  box-shadow: 16px 0 #febc2e, 32px 0 #28c840;
+}
+
+.case__url {
+  flex: 1;
+  min-width: 0;
+  padding: 3px 14px;
+  overflow: hidden;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text2);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.case__main img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.7s ease;
+}
+
+.case__main:hover img {
+  transform: scale(1.04);
+}
+
+/* طبقة View gallery */
+.case__main::before {
+  content: "View gallery";
+  position: absolute;
+  inset: 36px 0 0 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text1);
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.case__main:hover::before,
+.case__main:focus-visible::before {
+  opacity: 1;
+}
+
+/* شارة عدد الصور */
+.case__main::after {
+  content: attr(data-count);
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text1);
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid rgba(76, 225, 158, 0.5);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+/* ----- المصغّرات: 4 فقط ----- */
+.case__thumbs {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.case__thumbs a {
+  position: relative;
+  border-radius: 10px;
+}
+
+.case__thumbs a:nth-child(n + 5) {
+  display: none;                    /* تبقى في المعرض، فقط غير ظاهرة */
+}
+
+/* شارة "+N" على المصغّرة الرابعة */
+.case__thumbs a[data-more]::after {
+  content: "+" attr(data-more);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(0, 0, 0, 0.68);
+  transition: background-color 0.3s ease;
+}
+
+.case__thumbs a[data-more]:hover::after {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* ----- النص ----- */
+.case__body {
+  position: relative;
+}
+
+.case__no {
+  position: absolute;
+  top: -14px;
+  right: 0;
+  z-index: -1;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(4rem, 3rem + 4vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+}
+
+.case__title {
+  font-size: clamp(1.9rem, 1.2rem + 2.4vw, 2.75rem);
+}
+
+.case__desc {
+  max-width: 58ch;
+  margin-bottom: 1rem;
+}
+
+/* ----- بيانات المشروع: كروت صغيرة ----- */
+.case__meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0;
+  margin: 1.4rem 0;
+  border: none;
+}
+
+.case__meta li {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--text1);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.case__meta strong {
+  margin-bottom: 2px;
+}
+
+/* ----- المميزات ----- */
+.case__features {
+  gap: 10px 18px;
+  margin-bottom: 1.6rem;
+}
+
+.case__features li {
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* ----- الأزرار ----- */
+.case__links a.underline {
+  padding: 11px 24px;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  background: transparent;
+  color: var(--text1);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition), translate 0.3s ease;
+}
+
+.case__links a.underline:first-child {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-body);
+}
+
+.case__links a.underline:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  translate: 0 -3px;
+}
+
+.case__links a.underline:first-child:hover {
+  background: transparent;
+}
+
+.case__links a.underline[target="_blank"]::after {
+  content: " ↗";
+}
+
+/* ----- موبايل ----- */
+@media (max-width: 480px) {
+  .case__meta { grid-template-columns: 1fr; }
+  .case__url { display: none; }
+  .case__dots { margin-right: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case__main,
+  .case__main img,
+  .case__main::before { transition: none; }
+}
+
