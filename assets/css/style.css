@@ -2995,7 +2995,7 @@ footer {
 
 .sx__frame {
   padding: 6px;
-  background: linear-gradient(135deg, var(--accent), transparent 55%, #7dd3fc);
+  background: linear-gradient(135deg, var(--accent), transparent 55%,#4ce19e 80%); 
   border-radius: 28px;
 }
 
