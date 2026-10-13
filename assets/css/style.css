@@ -4790,7 +4790,7 @@ html.is-loading body {
 /* ----- موبايل ----- */
 @media (max-width: 480px) {
   .case__meta { grid-template-columns: 1fr; }
-  .case__url { display: none; }
+  /* .case__url { display: none; } */
   .case__dots { margin-right: 34px; }
 }
 
