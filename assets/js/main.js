@@ -530,60 +530,325 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===== Custom Cursor (GSAP) =====
+// ===== Custom Cursor 2.0 =====
 (function () {
-  const isDesktop = window.matchMedia("(pointer: fine)").matches;
-  const prefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  if (!isDesktop || prefersReduced) return;
+  const fine = window.matchMedia("(pointer: fine)").matches;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!fine || reduce) return;
 
   const dot = document.getElementById("cursorDot");
-  const ring = document.getElementById("cursorRing");
-  if (!dot || !ring) return;
+  const follow = document.getElementById("cursorFollow");
+  const glow = document.getElementById("cursorGlow");
+  const canvas = document.getElementById("cursorTrail");
+  if (!dot || !follow) return;
 
-  document.body.classList.add("has-custom-cursor");
+  const stretchEl = follow.querySelector(".cursor-stretch");
+  const ring = follow.querySelector(".cursor-ring");
+  const label = follow.querySelector(".cursor-label");
+  const body = document.body;
+  body.classList.add("has-custom-cursor");
 
-  let ringX = 0;
-  let ringY = 0;
+  // ---------- خيارات (اجعل أي ميزة false لإيقافها) ----------
+  const OPTIONS = { trail: true, glow: true, stretch: true, sparks: true };
 
-  window.addEventListener("mousemove", (e) => {
-    gsap.set(dot, { x: e.clientX, y: e.clientY });
-    ringX = e.clientX;
-    ringY = e.clientY;
+  // عناصر بنص داخل الحلقة (أو أضف data-cursor="Open" لأي عنصر)
+  const LABELS = [
+    [".case__main", "Gallery"],
+    [".case__thumbs a", "Zoom"],
+    [".cert", "Zoom"],
+  ];
+
+  // عناصر تلتصق بها الحلقة وتأخذ شكلها
+  const MAGNET =
+    ".hx__btn, .sx__btn, .cx__link, .pf, .header__social, #scrollTop, #form_button, .tst__btn, .tst__close";
+
+  const TEXT_INPUTS =
+    "input:not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]), textarea";
+  const CLICKABLE =
+    "a, button, label, select, summary, [role=button], [data-cursor-grow], .splide__pagination__page";
+
+  const MODE_CLASS = {
+    snap: "cursor-snap",
+    text: "cursor-text",
+    label: "cursor-label-on",
+    hover: "cursor-hover",
+  };
+
+  if (!OPTIONS.glow && glow) glow.remove();
+  const ctx = OPTIONS.trail && canvas ? canvas.getContext("2d") : null;
+  if (!ctx && canvas) canvas.remove();
+
+  // ---------- حالة ----------
+  const mouse = { x: 0, y: 0 };
+  const pos = { x: 0, y: 0 };
+  const gpos = { x: 0, y: 0 };
+  let ready = false;
+  let mode = "";
+  let snapped = null;
+  let sw = 0, sh = 0;
+  let lastMove = 0;
+  let isIdle = false;
+  let angle = 0;
+  let sCur = 0;
+
+  // ---------- الذيل ----------
+  const pts = [];
+  const LIFE = 380;
+  let trailDirty = false;
+  let cw = 0, ch = 0;
+
+  const resize = () => {
+    if (!ctx) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cw = window.innerWidth;
+    ch = window.innerHeight;
+    canvas.width = cw * dpr;
+    canvas.height = ch * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+  };
+  resize();
+  window.addEventListener("resize", resize);
+
+  const drawTrail = (now) => {
+    if (!ctx) return;
+    while (pts.length && now - pts[0].t > LIFE) pts.shift();
+
+    if (!pts.length) {
+      if (trailDirty) {
+        ctx.clearRect(0, 0, cw, ch);
+        trailDirty = false;
+      }
+      return;
+    }
+
+    ctx.clearRect(0, 0, cw, ch);
+    trailDirty = true;
+
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1];
+      const b = pts[i];
+      const life = 1 - (now - b.t) / LIFE;
+      ctx.strokeStyle = `rgba(76,225,158,${(life * 0.5).toFixed(3)})`;
+      ctx.lineWidth = 1 + life * 5;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
+  };
+
+  // ---------- الحالات ----------
+  const setMode = (next) => {
+    if (next === mode) return;
+    if (mode) body.classList.remove(MODE_CLASS[mode]);
+    mode = next;
+    if (mode) body.classList.add(MODE_CLASS[mode]);
+  };
+
+  const snapTo = (el) => {
+    if (snapped === el) return;
+    snapped = el;
+    sw = sh = 0;
+
+    const r = el.getBoundingClientRect();
+    const cs = getComputedStyle(el).borderTopLeftRadius;
+    let rad = cs.includes("%")
+      ? (parseFloat(cs) / 100) * Math.min(r.width, r.height)
+      : parseFloat(cs) || 0;
+    rad = Math.min(rad + 7, (Math.min(r.width, r.height) + 14) / 2);
+    if (rad < 8) rad = 10;                      // عناصر بزوايا حادة
+    ring.style.setProperty("--r", rad + "px");
+  };
+
+  const release = () => {
+    if (!snapped) return;
+    snapped = null;
+    sw = sh = 0;
+    ring.style.removeProperty("--w");
+    ring.style.removeProperty("--h");
+    ring.style.removeProperty("--r");
+  };
+
+  const evaluate = (t) => {
+    if (!(t instanceof Element)) return;
+
+    const magnet = t.closest(MAGNET);
+    if (magnet) {
+      snapTo(magnet);
+      return setMode("snap");
+    }
+    release();
+
+    if (t.closest(TEXT_INPUTS)) return setMode("text");
+
+    let text = "";
+    const custom = t.closest("[data-cursor]");
+    if (custom) {
+      text = custom.dataset.cursor;
+    } else {
+      for (const [sel, txt] of LABELS) {
+        if (t.closest(sel)) { text = txt; break; }
+      }
+    }
+    if (text) {
+      label.textContent = text;
+      return setMode("label");
+    }
+
+    setMode(t.closest(CLICKABLE) ? "hover" : "");
+  };
+
+  // ---------- الأحداث ----------
+  window.addEventListener(
+    "mousemove",
+    (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      lastMove = performance.now();
+
+      if (!ready) {
+        ready = true;
+        pos.x = gpos.x = mouse.x;
+        pos.y = gpos.y = mouse.y;
+        body.classList.add("cursor-ready");
+      }
+
+      if (ctx && mode !== "snap" && mode !== "text") {
+        pts.push({ x: mouse.x, y: mouse.y, t: lastMove });
+        if (pts.length > 40) pts.shift();
+      }
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("mouseover", (e) => evaluate(e.target));
+
+  // بعد التمرير: أعد فحص العنصر تحت المؤشر
+  let scrollTimer;
+  window.addEventListener(
+    "scroll",
+    () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        if (ready) evaluate(document.elementFromPoint(mouse.x, mouse.y));
+      }, 120);
+    },
+    { passive: true }
+  );
+
+  const burst = (x, y) => {
+    const n = 8;
+    for (let i = 0; i < n; i++) {
+      const s = document.createElement("span");
+      s.className = "cursor-spark";
+      const a = (Math.PI * 2 * i) / n + Math.random() * 0.5;
+      const d = 28 + Math.random() * 34;
+      s.style.left = x + "px";
+      s.style.top = y + "px";
+      s.style.setProperty("--dx", Math.cos(a) * d + "px");
+      s.style.setProperty("--dy", Math.sin(a) * d + "px");
+      document.body.appendChild(s);
+      s.addEventListener("animationend", () => s.remove(), { once: true });
+    }
+  };
+
+  document.addEventListener("mousedown", (e) => {
+    body.classList.add("cursor-down");
+
+    const ripple = document.createElement("span");
+    ripple.className = "cursor-ripple";
+    ripple.style.left = e.clientX + "px";
+    ripple.style.top = e.clientY + "px";
+    document.body.appendChild(ripple);
+    ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+
+    if (OPTIONS.sparks) burst(e.clientX, e.clientY);
   });
 
-  gsap.ticker.add(() => {
-    const currentX = gsap.getProperty(ring, "x") || 0;
-    const currentY = gsap.getProperty(ring, "y") || 0;
-    gsap.set(ring, {
-      x: currentX + (ringX - currentX) * 0.18,
-      y: currentY + (ringY - currentY) * 0.18,
-    });
+  document.addEventListener("mouseup", () => body.classList.remove("cursor-down"));
+
+  document.documentElement.addEventListener("mouseleave", () => body.classList.remove("cursor-ready"));
+  document.documentElement.addEventListener("mouseenter", () => {
+    if (ready) body.classList.add("cursor-ready");
   });
 
-  const growTargets = "a, button, [data-cursor-grow]";
+  // ---------- الحلقة الرئيسية ----------
+  const frame = (now) => {
+    requestAnimationFrame(frame);
+    if (!ready) return;
 
-  const onEnter = () =>
-    gsap.to(ring, { scale: 2.2, duration: 0.3, opacity: 0.5 });
-  const onLeave = () =>
-    gsap.to(ring, { scale: 1, duration: 0.3, opacity: 1 });
+    // النقطة: مباشرة
+    dot.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0)`;
 
-  // نستخدم event delegation عشان يشتغل حتى على عناصر بتضاف بعدين
-  document.addEventListener("mouseover", (e) => {
-    if (e.target.closest(growTargets)) onEnter();
-  });
-  document.addEventListener("mouseout", (e) => {
-    if (e.target.closest(growTargets)) onLeave();
-  });
+    // هدف الحلقة
+    let tx = mouse.x;
+    let ty = mouse.y;
+    let k = 0.18;
 
-  // إخفاء الكيرسور لما يخرج من الصفحة
-  document.addEventListener("mouseleave", () => {
-    gsap.to([dot, ring], { opacity: 0, duration: 0.2 });
-  });
-  document.addEventListener("mouseenter", () => {
-    gsap.to([dot, ring], { opacity: 1, duration: 0.2 });
-  });
+    if (snapped) {
+      if (!snapped.isConnected || !snapped.matches(":hover")) {
+        release();
+        evaluate(document.elementFromPoint(mouse.x, mouse.y));
+      } else {
+        const r = snapped.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        tx = cx + (mouse.x - cx) * 0.14;      // ميل خفيف نحو المؤشر
+        ty = cy + (mouse.y - cy) * 0.14;
+        k = 0.28;
+
+        const w = Math.round(r.width + 14);
+        const h = Math.round(r.height + 14);
+        if (w !== sw || h !== sh) {
+          ring.style.setProperty("--w", w + "px");
+          ring.style.setProperty("--h", h + "px");
+          sw = w;
+          sh = h;
+        }
+      }
+    }
+
+    pos.x += (tx - pos.x) * k;
+    pos.y += (ty - pos.y) * k;
+    follow.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+
+    // التمدد مع السرعة
+    if (OPTIONS.stretch) {
+      const dx = tx - pos.x;
+      const dy = ty - pos.y;
+      const dist = Math.hypot(dx, dy);
+      const allowed = mode === "" || mode === "hover";
+      const target = allowed ? Math.min(dist / 140, 0.45) : 0;
+
+      if (dist > 1.5) angle = Math.atan2(dy, dx);
+      sCur += (target - sCur) * 0.25;
+
+      stretchEl.style.transform =
+        sCur > 0.005
+          ? `rotate(${angle}rad) scale(${1 + sCur}, ${1 - sCur * 0.45})`
+          : "";
+    }
+
+    // التوهج المحيطي (أبطأ من الحلقة)
+    if (glow) {
+      gpos.x += (mouse.x - gpos.x) * 0.08;
+      gpos.y += (mouse.y - gpos.y) * 0.08;
+      glow.style.transform = `translate3d(${gpos.x}px, ${gpos.y}px, 0)`;
+    }
+
+    drawTrail(now);
+
+    // سكون: نبض السونار
+    const idle = now - lastMove > 1600;
+    if (idle !== isIdle) {
+      isIdle = idle;
+      body.classList.toggle("cursor-idle", idle);
+    }
+  };
+
+  requestAnimationFrame(frame);
 })();
 
 // ===== New Hero =====

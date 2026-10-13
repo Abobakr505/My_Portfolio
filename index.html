@@ -34,8 +34,14 @@
 
 <body>
   <!-- Custom Cursor -->
-<div id="cursorDot" class="cursor-dot"></div>
-<div id="cursorRing" class="cursor-ring"></div>
+<!-- Custom Cursor -->
+<canvas id="cursorTrail" class="cursor-trail" aria-hidden="true"></canvas>
+<div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+<div id="cursorDot" class="cursor-dot" aria-hidden="true"></div>
+<div id="cursorFollow" class="cursor-follow" aria-hidden="true">
+  <div class="cursor-stretch"><div class="cursor-ring"></div></div>
+  <span class="cursor-label"></span>
+</div>
 
   <div id="scrollProgressBar"></div>
 <div id="preloader">

@@ -1395,51 +1395,270 @@ footer {
 
 
 
+
 /* ============================= */
-/* ===== CUSTOM CURSOR ========= */
+/* ===== CUSTOM CURSOR 2.0 ===== */
 /* ============================= */
 
-.cursor-dot,
-.cursor-ring {
+@property --curA {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ----- الذيل والتوهج ----- */
+.cursor-trail {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9996;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  z-index: 9999;
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9995;
+  width: 440px;
+  height: 440px;
+  margin: -220px 0 0 -220px;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(76, 225, 158, 0.13), transparent);
+  opacity: 0;
+  pointer-events: none;
   will-change: transform;
+  transition: opacity 0.4s ease;
+}
+
+/* ----- النقطة والحلقة ----- */
+.cursor-dot,
+.cursor-follow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+body.cursor-ready .cursor-dot,
+body.cursor-ready .cursor-follow,
+body.cursor-ready .cursor-glow {
+  opacity: 1;
 }
 
 .cursor-dot {
   width: 6px;
   height: 6px;
-  background-color: var(--accent);
+  margin: -3px 0 0 -3px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35), 0 0 12px rgba(76, 225, 158, 0.9);
+  transition: opacity 0.3s ease, scale 0.25s ease;
+}
+
+.cursor-follow {
+  width: 0;
+  height: 0;
+}
+
+.cursor-stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  will-change: transform;
 }
 
 .cursor-ring {
-  width: 32px;
-  height: 32px;
-  border: 1px solid #00ff8c;
+  --w: 38px;
+  --h: 38px;
+  --r: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--w);
+  height: var(--h);
+  translate: -50% -50%;
+  border-radius: var(--r);
+  background: rgba(76, 225, 158, 0);
+  box-shadow: 0 0 18px rgba(76, 225, 158, 0.18), inset 0 0 12px rgba(76, 225, 158, 0.06);
+  transition:
+    scale 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-radius 0.35s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* إخفاء الكيرسور الافتراضي وتفعيل الكاستم بس على الشاشات اللي فيها ماوس حقيقي */
+/* الحد المتدرج الدوّار */
+.cursor-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--curA),
+    var(--accent),
+    var(--accent) 45%,
+    rgba(125, 211, 252, 0) 55%,
+    var(--accent)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: curSpin 4s linear infinite;
+  transition: opacity 0.25s ease;
+}
+
+@keyframes curSpin {
+  to { --curA: 360deg; }
+}
+
+/* نبض السونار عند السكون */
+.cursor-ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--accent);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.cursor-idle:not(.cursor-hover):not(.cursor-snap):not(.cursor-text):not(.cursor-label-on)
+  .cursor-ring::after {
+  animation: curSonar 1.9s ease-out infinite;
+}
+
+@keyframes curSonar {
+  0%   { opacity: 0.55; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.9); }
+}
+
+/* ----- النص داخل الحلقة ----- */
+.cursor-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
+  scale: 0.6;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--bg-body);
+  opacity: 0;
+  transition: opacity 0.2s ease, scale 0.3s ease;
+}
+
+/* ----- الحالات ----- */
+
+/* روابط عادية */
+body.cursor-hover .cursor-ring {
+  scale: 1.45;
+  background: rgba(76, 225, 158, 0.12);
+}
+body.cursor-hover .cursor-dot { scale: 0.5; }
+
+/* التصاق بالأزرار: الحلقة تأخذ شكل العنصر */
+body.cursor-snap .cursor-ring {
+  background: rgba(76, 225, 158, 0.08);
+  box-shadow: 0 0 26px rgba(76, 225, 158, 0.28), inset 0 0 14px rgba(76, 225, 158, 0.1);
+}
+body.cursor-snap .cursor-dot { scale: 0; }
+
+/* حقول الكتابة */
+body.cursor-text .cursor-ring {
+  --w: 3px;
+  --h: 30px;
+  --r: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(76, 225, 158, 0.6);
+}
+body.cursor-text .cursor-ring::before { opacity: 0; }
+body.cursor-text .cursor-dot { scale: 0; }
+
+/* عناصر بنص (Gallery / Zoom) */
+body.cursor-label-on .cursor-ring {
+  scale: 2.2;
+  background: var(--accent);
+  box-shadow: 0 0 30px rgba(76, 225, 158, 0.45);
+}
+body.cursor-label-on .cursor-ring::before { opacity: 0; }
+body.cursor-label-on .cursor-dot { scale: 0; }
+body.cursor-label-on .cursor-label {
+  opacity: 1;
+  scale: 1;
+  transition-delay: 0.05s;
+}
+
+/* الضغط */
+body.cursor-down .cursor-ring { scale: 0.82; }
+body.cursor-hover.cursor-down .cursor-ring { scale: 1.25; }
+body.cursor-snap.cursor-down .cursor-ring { scale: 0.95; }
+body.cursor-text.cursor-down .cursor-ring { scale: 1; }
+body.cursor-label-on.cursor-down .cursor-ring { scale: 1.9; }
+
+/* ----- موجة وشرارات الضغط ----- */
+.cursor-ripple {
+  position: fixed;
+  z-index: 9998;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: curRipple 0.6s ease-out forwards;
+}
+
+@keyframes curRipple {
+  to { transform: scale(5); opacity: 0; }
+}
+
+.cursor-spark {
+  position: fixed;
+  z-index: 9998;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(76, 225, 158, 0.9);
+  pointer-events: none;
+  animation: curSpark 0.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes curSpark {
+  to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+/* ----- إخفاء المؤشر الأصلي ----- */
 @media (pointer: fine) {
   body.has-custom-cursor,
-  body.has-custom-cursor a,
-  body.has-custom-cursor button {
-    cursor: none;
+  body.has-custom-cursor * {
+    cursor: none !important;
   }
 }
 
-/* إخفاء الكيرسور الكاستم على الموبايل/التابلت تمامًا */
 @media (pointer: coarse) {
   .cursor-dot,
-  .cursor-ring {
+  .cursor-follow,
+  .cursor-glow,
+  .cursor-trail {
     display: none;
   }
 }
-
 /* ============================= */
 /* ===== FEATURED PROJECTS ===== */
 /* ============================= */
