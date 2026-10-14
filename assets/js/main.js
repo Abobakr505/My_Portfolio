@@ -261,9 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider("#services", ".service-card");
   initSlider("#reviews", ".review-card");
 });
-// ===== Send Contact Form to Telegram =====
-const TELEGRAM_BOT_TOKEN = "8616720811:AAH3fmGsv605vfUuHqT9tHNzG82wIfDxNog"; // مثال: 123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ
-const TELEGRAM_CHAT_ID   = "7321445096"; // مثال: 123456789
 
 // ===== Contact form → Telegram =====
 // ===== Contact form → Telegram (toast) =====
@@ -402,9 +399,6 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 4000,
     });
 
-  // ---------- Helpers ----------
-  const esc = (s) =>
-    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
   const getLast = () => {
     try { return +localStorage.getItem(STORAGE_KEY) || 0; } catch { return 0; }
@@ -414,13 +408,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // ---------- Send ----------
-  const send = async ({ name, email, message }) => {
-    const text =
-      `<b>📩 رسالة جديدة من الموقع</b>\n\n` +
-      `👤 <b>الاسم:</b> ${esc(name)}\n` +
-      `📧 <b>الإيميل:</b> ${esc(email)}\n` +
-      `💬 <b>الرسالة:</b>\n${esc(message.slice(0, 3000))}`;
-
+  // ---------- Send ----------
+  const send = async ({ name, email, message, hp }) => {
     submitBtn.disabled = true;
     showSending();
 
@@ -428,21 +417,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const timeout = setTimeout(() => controller.abort(), 15000);
 
     try {
-      const res = await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text,
-            parse_mode: "HTML",
-          }),
-          signal: controller.signal,
-        }
-      );
-      const data = await res.json();
-      if (!data.ok) throw new Error("api");
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message, hp_field: hp }),
+        signal: controller.signal,
+      });
+      const data = await res.json().catch(() => ({}));
+
+      // رسائل كثيرة: لا فائدة من Retry
+      if (res.status === 429) {
+        toast({
+          type: "info",
+          title: "Too many messages",
+          text: "Please try again in a few minutes.",
+          duration: 5000,
+        });
+        return;
+      }
+
+      // بيانات غير صحيحة: Retry بنفس البيانات سيفشل أيضًا
+      if (res.status === 400) {
+        const why = {
+          invalid_name: "Please enter your name.",
+          invalid_email: "Please enter a valid email address.",
+          invalid_message: "Your message should be between 3 and 3000 characters.",
+        };
+        toast({
+          type: "error",
+          title: "Please check your details",
+          text: why[data.error] || "Some fields look incorrect.",
+          duration: 6000,
+        });
+        return;
+      }
+
+      if (!res.ok || !data.ok) throw new Error("server");
 
       setLast();
       form.reset();
@@ -454,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : !navigator.onLine
           ? "You seem to be offline. Check your connection and try again."
           : "Something went wrong. Please try again in a moment.";
-      showError(reason, () => send({ name, email, message }));
+      showError(reason, () => send({ name, email, message, hp }));
     } finally {
       clearTimeout(timeout);
       submitBtn.disabled = false;
@@ -471,6 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: form.user_name.value.trim(),
       email: form.user_email.value.trim(),
       message: form.message.value.trim(),
+      hp: form.hp_field ? form.hp_field.value : "",
     });
   });
 });
