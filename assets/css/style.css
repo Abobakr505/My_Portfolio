@@ -2040,7 +2040,7 @@ body.cursor-label-on.cursor-down .cursor-ring { scale: 1.9; }
   gap: 36px;
   max-width: 480px;
   margin-inline: auto;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -2211,7 +2211,7 @@ body.cursor-label-on.cursor-down .cursor-ring { scale: 1.9; }
   max-width: 420px;
   justify-content: space-between;
   gap: 16px;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 /* ---- الصورة: موبايل ---- */
