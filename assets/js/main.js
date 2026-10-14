@@ -1215,3 +1215,151 @@ document.addEventListener("DOMContentLoaded", () => {
 
   requestAnimationFrame(frame);
 })();
+
+// ===== Dock navbar =====
+(function () {
+  const dock = document.getElementById("dock");
+  if (!dock) return;
+
+  const logo = document.getElementById("dkLogo");
+  const now = document.getElementById("dkNow");
+  const items = [...dock.querySelectorAll(".dk__i")];
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+
+  // ---------- ظهور بعد الـ preloader ----------
+  const show = () => {
+    dock.classList.add("is-in");
+    if (logo) logo.classList.add("is-in");
+  };
+  if (!document.getElementById("preloader") || window.__preloaderDone) show();
+  else {
+    document.addEventListener("preloader:done", show, { once: true });
+    setTimeout(show, 9000);                       // أمان
+  }
+
+  // ---------- تمرير (متوافق مع butter.js) ----------
+  const topOf = (el) => {
+    let y = 0;
+    while (el) { y += el.offsetTop; el = el.offsetParent; }
+    return y;
+  };
+
+  const goTo = (hash) => {
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const y = Math.max(topOf(target) - 20, 0);
+    if (typeof butter !== "undefined" && typeof butter.scrollTo === "function") butter.scrollTo(y);
+    else window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  [...dock.querySelectorAll('a[href^="#"]'), ...(logo ? [logo] : [])].forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      goTo(a.getAttribute("href"));
+    });
+  });
+
+  // ---------- القسم الحالي ----------
+  const LABEL = {
+    home: "Home", skills: "Skills", services: "Services",
+    process: "Process", work: "Work", contact: "Contact",
+  };
+  const GROUP = {
+    home: "home", skills: "skills", services: "services",
+    process: "process", featured: "work", projects: "work", contact: "contact",
+  };
+
+  let current = "";
+  let announce = false;
+  let flashTimer;
+  setTimeout(() => (announce = true), 2500);       // لا تُظهر الكبسولة عند أول تحميل
+
+  const flash = (text) => {
+    if (!now || dock.matches(":hover")) return;
+    now.textContent = text;
+    now.classList.add("is-show");
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(() => now.classList.remove("is-show"), 1300);
+  };
+
+  const setActive = (key) => {
+    if (!key || key === current) return;
+    current = key;
+    items.forEach((a) => {
+      const on = a.dataset.nav === key;
+      a.classList.toggle("is-active", on);
+      on ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current");
+    });
+    if (announce) flash(LABEL[key]);
+  };
+
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => e.isIntersecting && setActive(GROUP[e.target.id])),
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  Object.keys(GROUP).forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+  setActive("home");
+
+  // ---------- تكبير الأيقونات (ديسكتوب فقط) ----------
+  if (canHover && !reduce) {
+    const MAX = 0.55;                              // أقصى زيادة (1 → 1.55)
+    const SIGMA = 70;                              // مدى تأثير المؤشر على الجيران
+    const cur = items.map(() => 1);
+    let centers = [];
+    let mx = null;
+    let raf = 0;
+
+    const atRest = () => cur.every((v) => v < 1.03);
+
+    const measure = () => {
+      if (!atRest()) return;                       // القياس يجب أن يكون والأيقونات بحجمها الطبيعي
+      centers = items.map((el) => {
+        const r = el.getBoundingClientRect();
+        return r.left + r.width / 2;
+      });
+    };
+
+    const step = () => {
+      raf = 0;
+      let moving = false;
+
+      items.forEach((el, i) => {
+        let target = 1;
+        if (mx !== null && centers[i] !== undefined) {
+          const d = mx - centers[i];
+          target = 1 + MAX * Math.exp(-(d * d) / (2 * SIGMA * SIGMA));
+        }
+        cur[i] += (target - cur[i]) * 0.22;
+        if (Math.abs(target - cur[i]) < 0.002) cur[i] = target;
+        else moving = true;
+        el.style.setProperty("--s", cur[i].toFixed(3));
+      });
+
+      if (moving) raf = requestAnimationFrame(step);
+    };
+
+    const kick = () => { if (!raf) raf = requestAnimationFrame(step); };
+
+    dock.addEventListener("mouseenter", () => { measure(); });
+    dock.addEventListener("mousemove", (e) => { mx = e.clientX; kick(); }, { passive: true });
+    dock.addEventListener("mouseleave", () => { mx = null; kick(); });
+
+    window.addEventListener("resize", measure);
+    window.addEventListener("load", measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    measure();
+  }
+
+  // ---------- جوال: الـ Dock يختفي أثناء الكتابة ----------
+  if (coarse) {
+    document.addEventListener("focusin", (e) => {
+      if (e.target.matches("input, textarea, select")) dock.classList.add("is-away");
+    });
+    document.addEventListener("focusout", () => dock.classList.remove("is-away"));
+  }
+})();
