@@ -856,7 +856,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // --- Typewriter ---
-  const roles = ["Full Stack Developer", "Mobile App Developer", "React & Supabase Builder"];
+  const roles = ["Full Stack Developer", "Mobile App Developer", "React & Supabase Builder" , "AI-Assisted Developer"];
   const typedEl = document.querySelector(".hx__typed");
 
   if (typedEl) {
