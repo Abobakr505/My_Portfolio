@@ -6558,3 +6558,13 @@ html.is-loading body {
     transition: none;
   }
 }
+
+.subtitle_section{
+  padding: 0 ;
+  text-align: center;
+}
+@media screen and (max-width: 600px) {
+    .subtitle_section{
+    padding: 0 2rem;
+  }
+}
