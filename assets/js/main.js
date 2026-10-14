@@ -1363,3 +1363,88 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("focusout", () => dock.classList.remove("is-away"));
   }
 })();
+
+// ===== Hero: image tilt + magnetic buttons + underline trigger =====
+(function () {
+  const hx = document.querySelector(".hx");
+  if (!hx) return;
+
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // رسم الخط تحت الاسم بعد زوال الـ preloader
+  const ready = () => hx.classList.add("is-ready");
+  if (window.__preloaderDone || !document.getElementById("preloader")) ready();
+  else document.addEventListener("preloader:done", ready, { once: true });
+  setTimeout(ready, 9000);
+
+  if (!canHover || reduce) return;
+
+  // ---------- ميل الصورة ----------
+  const vis = hx.querySelector(".hx__visual");
+  if (vis) {
+    const MAX = 11;                                  // أقصى زاوية ميل
+    const t = { rx: 0, ry: 0, gx: 50, gy: 50, tx: 0, ty: 0 };
+    const c = { ...t };
+    let raf = 0;
+    let hovering = false;
+
+    const apply = () => {
+      vis.style.setProperty("--rx", c.rx.toFixed(2) + "deg");
+      vis.style.setProperty("--ry", c.ry.toFixed(2) + "deg");
+      vis.style.setProperty("--gx", c.gx.toFixed(1) + "%");
+      vis.style.setProperty("--gy", c.gy.toFixed(1) + "%");
+      vis.style.setProperty("--tx", c.tx.toFixed(1) + "px");
+      vis.style.setProperty("--ty", c.ty.toFixed(1) + "px");
+    };
+
+    const loop = () => {
+      raf = 0;
+      let moving = false;
+      for (const k in c) {
+        c[k] += (t[k] - c[k]) * 0.12;
+        if (Math.abs(t[k] - c[k]) > 0.02) moving = true;
+      }
+      apply();
+      if (moving || hovering) raf = requestAnimationFrame(loop);
+    };
+
+    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
+    const clamp = (v) => Math.min(Math.max(v, 0), 1);
+
+    vis.addEventListener("pointerenter", () => { hovering = true; kick(); });
+
+    vis.addEventListener("pointermove", (e) => {
+      const r = vis.getBoundingClientRect();
+      const px = clamp((e.clientX - r.left) / r.width);
+      const py = clamp((e.clientY - r.top) / r.height);
+      t.ry = (px - 0.5) * 2 * MAX;
+      t.rx = -(py - 0.5) * 2 * MAX;
+      t.gx = px * 100;
+      t.gy = py * 100;
+      t.tx = (px - 0.5) * 30;
+      t.ty = (py - 0.5) * 30;
+      kick();
+    });
+
+    vis.addEventListener("pointerleave", () => {
+      hovering = false;
+      t.rx = t.ry = t.tx = t.ty = 0;
+      t.gx = t.gy = 50;
+      kick();
+    });
+  }
+
+  // ---------- أزرار تنجذب نحو المؤشر ----------
+  hx.querySelectorAll(".hx__btn").forEach((btn) => {
+    btn.addEventListener("pointermove", (e) => {
+      const r = btn.getBoundingClientRect();
+      btn.style.setProperty("--mx", ((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1) + "px");
+      btn.style.setProperty("--my", ((e.clientY - r.top - r.height / 2) * 0.28).toFixed(1) + "px");
+    });
+    btn.addEventListener("pointerleave", () => {
+      btn.style.setProperty("--mx", "0px");
+      btn.style.setProperty("--my", "0px");
+    });
+  });
+})();

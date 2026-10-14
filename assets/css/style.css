@@ -2040,7 +2040,7 @@ body.cursor-label-on.cursor-down .cursor-ring { scale: 1.9; }
   gap: 36px;
   max-width: 480px;
   margin-inline: auto;
-  padding-bottom: 24px;
+  padding-bottom: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -6228,4 +6228,133 @@ html.is-loading body {
   .dk__cta { border-radius: 15px; }
   .dk__now { bottom: calc(env(safe-area-inset-bottom, 0px) + 16px + 68px + 12px); }
   #scrollTop { bottom: calc(env(safe-area-inset-bottom, 0px) + 16px + 68px + 14px); }
+}
+
+
+
+/* الوصف */
+.hx__desc {
+  max-width: 50ch;
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.15rem);
+  line-height: 1.8;
+  color: var(--text2);
+}
+
+.hx__em {
+  padding: 0 3px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(transparent 62%, rgba(76, 225, 158, 0.3) 62%);
+  border-radius: 2px;
+}
+
+/* الإحصائيات */
+.hx__stats {
+  gap: 0;
+  max-width: 440px;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hx__stats > div { flex: 1; padding-inline: 16px; text-align: center; }
+.hx__stats > div:first-child { padding-left: 0; }
+.hx__stats > div + div { border-left: 1px solid rgba(255, 255, 255, 0.1); }
+
+.hx__stats b {
+  display: inline-block;
+  font-size: 1.9rem;
+  background: linear-gradient(135deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.hx__stats b::after {
+  content: "+";
+  -webkit-text-fill-color: var(--accent);
+  color: var(--accent);
+}
+
+.hx__stats span { display: block; }
+
+@media (min-width: 62.5em) {
+  .hx__stats > div { text-align: left; }
+}
+
+/* المسمى الوظيفي */
+.hx__role {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+}
+
+.hx__role::before {
+  content: "";
+  width: 30px;
+  height: 2px;
+  margin-right: 14px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+}
+
+@property --hxA {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ================= النصوص ================= */
+
+/* يلغي التسطير المنقّط القديم عن اليد (p > span) */
+.hx__greeting .hx__wave { background: none; }
+
+.hx__title {
+  margin: 0 0 14px;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.hx .hx__name {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  background-image: linear-gradient(100deg, #fff 0%, var(--accent) 35%, #45d092 60%, #fff 100%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hxShine 6s linear infinite;
+}
+
+@keyframes hxShine { to { background-position: 200% 0; } }
+
+/* خط متموّج يُرسم تحت الاسم */
+.hx .hx__name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.1em;
+  height: 0.16em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4 T30 4 T40 4' fill='none' stroke='%234ce19e' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E")
+    repeat-x 0 50% / auto 100%;
+  -webkit-text-fill-color: initial;
+  transform-origin: left center;
+  scale: 0 1;
+}
+
+.hx.is-ready .hx__name::after {
+  animation: hxUnder 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+}
+
+@keyframes hxUnder { to { scale: 1 1; } }
+
+.hx .hx__period {
+  background: none;
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
 }
