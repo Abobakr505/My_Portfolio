@@ -1002,3 +1002,216 @@ document.addEventListener("DOMContentLoaded", () => {
   greeting.addEventListener("mouseenter", wave);
   greeting.addEventListener("touchstart", wave, { passive: true });
 });
+// ===== Decorations: parallax =====
+(function () {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+
+  const items = [...document.querySelectorAll(".deco[data-speed]")].map((el) => ({
+    el,
+    host: el.closest(".decor-host") || el.parentElement,
+    speed: parseFloat(el.dataset.speed) || 0,
+    last: 0,
+  }));
+  if (!items.length) return;
+
+  // أي أقسام ظاهرة الآن؟
+  const visible = new Set();
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) =>
+        e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)
+      ),
+    { rootMargin: "150px" }
+  );
+  new Set(items.map((i) => i.host)).forEach((h) => io.observe(h));
+
+  const frame = () => {
+    requestAnimationFrame(frame);
+    if (!visible.size) return;
+
+    const half = window.innerHeight / 2;
+
+    for (const it of items) {
+      if (!visible.has(it.host)) continue;
+      const r = it.host.getBoundingClientRect();
+      const py = (r.top + r.height / 2 - half) * it.speed;
+
+      if (Math.abs(py - it.last) > 0.2) {
+        it.last = py;
+        it.el.style.setProperty("--py", py.toFixed(1) + "px");
+      }
+    }
+  };
+
+  requestAnimationFrame(frame);
+})();
+
+
+// ===== Tech stack marquee =====
+(function () {
+  const section = document.querySelector(".mq");
+  if (!section) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    section.classList.add("mq--static");
+    return;
+  }
+
+  const rows = [...section.querySelectorAll("[data-mq]")].map((el) => {
+    const track = el.querySelector(".mq__track");
+    return {
+      el,
+      track,
+      group: track.firstElementChild,
+      speed: parseFloat(el.dataset.mq) || 30,      // بكسل/ثانية
+      dir: parseFloat(el.dataset.dir) || -1,       // -1 يسار، 1 يمين
+      pos: 0,
+      w: 0,
+      mult: 1,
+      hover: false,
+      visible: false,
+    };
+  });
+
+  const build = () =>
+    rows.forEach((r) => {
+      r.track.querySelectorAll("[data-clone]").forEach((n) => n.remove());
+      // العرض من الـ layout (لا يتأثر بدوران الشريط)
+      r.w = parseFloat(getComputedStyle(r.group).width) || 0;
+      if (!r.w) return;
+      const copies = Math.ceil(window.innerWidth / r.w) + 1;
+      for (let i = 0; i < copies; i++) {
+        const c = r.group.cloneNode(true);
+        c.dataset.clone = "1";
+        c.setAttribute("aria-hidden", "true");
+        r.track.appendChild(c);
+      }
+    });
+
+  build();
+  window.addEventListener("load", build);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(build, 200);
+  });
+
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        const r = rows.find((x) => x.el === e.target);
+        if (r) r.visible = e.isIntersecting;
+      }),
+    { rootMargin: "150px" }
+  );
+
+  rows.forEach((r) => {
+    io.observe(r.el);
+    r.el.addEventListener("mouseenter", () => (r.hover = true));
+    r.el.addEventListener("mouseleave", () => (r.hover = false));
+  });
+
+  let last = performance.now();
+  let lastY = window.pageYOffset;
+  let boost = 0;
+
+  const frame = (now) => {
+    requestAnimationFrame(frame);
+
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+
+    const y = window.pageYOffset;
+    boost += (Math.min(Math.abs(y - lastY) * 0.08, 4) - boost) * 0.1;
+    lastY = y;
+
+    rows.forEach((r) => {
+      if (!r.visible || !r.w) return;
+      r.mult += ((r.hover ? 0.12 : 1) - r.mult) * 0.08;
+      r.pos += -r.dir * r.speed * dt * r.mult * (1 + boost);
+      r.pos = ((r.pos % r.w) + r.w) % r.w;
+      r.track.style.transform = `translate3d(${-r.pos}px, 0, 0)`;
+    });
+  };
+
+  requestAnimationFrame(frame);
+})();
+
+// ===== How I Work v2: tabs + autoplay =====
+(function () {
+  const root = document.querySelector(".hw2");
+  if (!root) return;
+
+  const tabs = [...root.querySelectorAll(".hw2__tab")];
+  const panels = [...root.querySelectorAll(".hw2__panel")];
+  const list = root.querySelector(".hw2__tabs");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  const DUR = 6500;                 // مدة كل مرحلة (ملّي ثانية)
+  let cur = 0;
+  let elapsed = 0;
+  let auto = !reduce;
+  let visible = false;
+  let hover = false;
+  let last = performance.now();
+
+  const prog = (k) => tabs[k].querySelector(".hw2__prog");
+
+  const select = (n, byUser) => {
+    cur = (n + tabs.length) % tabs.length;
+    elapsed = 0;
+
+    tabs.forEach((t, k) => {
+      const on = k === cur;
+      t.classList.toggle("is-active", on);
+      t.classList.toggle("is-done", k < cur);
+      t.setAttribute("aria-selected", on);
+      t.tabIndex = on ? 0 : -1;
+      prog(k).style.removeProperty("--pg");
+      panels[k].classList.toggle("is-active", on);
+    });
+
+    // بعد تدخل الزائر: يتوقف التبديل التلقائي
+    if (byUser) auto = false;
+    if (!auto) prog(cur).style.setProperty("--pg", 1);
+  };
+
+  select(0, false);
+
+  tabs.forEach((t, k) => t.addEventListener("click", () => select(k, true)));
+
+  list.addEventListener("keydown", (e) => {
+    const keys = { ArrowRight: cur + 1, ArrowLeft: cur - 1, Home: 0, End: tabs.length - 1 };
+    if (!(e.key in keys)) return;
+    e.preventDefault();
+    select(keys[e.key], true);
+    tabs[cur].focus();
+  });
+
+  if (canHover) {
+    root.addEventListener("mouseenter", () => (hover = true));
+    root.addEventListener("mouseleave", () => (hover = false));
+  }
+
+  new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.35 }).observe(root);
+
+  const frame = (now) => {
+    requestAnimationFrame(frame);
+    const dt = now - last;
+    last = now;
+
+    if (!auto || !visible || hover || document.hidden) return;
+
+    elapsed += Math.min(dt, 50);
+    const p = Math.min(elapsed / DUR, 1);
+    prog(cur).style.setProperty("--pg", p.toFixed(3));
+
+    if (p >= 1) select(cur + 1, false);
+  };
+
+  requestAnimationFrame(frame);
+})();

@@ -86,8 +86,14 @@
     </header>
 
     <main id="main">
-<section class="hx">
-  <div class="wrapper hx__wrapper bottom-border">
+<section class="hx  decor-host" id="home">
+    <img class="deco deco--rings deco--float" data-speed="0.08"
+       style="--s:460px; top:6%; left:-14%;"
+       src="./assets/images/pattern-rings.svg" alt="" width="530" height="129">
+  <span class="deco deco--dots deco--hide-sm" data-speed="-0.1"
+        style="--s:200px; bottom:4%; left:42%;"></span>
+  <span class="deco deco--plus deco--spin" style="--s:34px; top:14%; right:46%;"></span>
+  <div class="wrapper hx__wrapper">
 
     <div class="hx__text">
       <div class="hx__badge">
@@ -143,11 +149,46 @@
     </div>
 
   </div>
+  <section class="mq " aria-label="Skills and technologies">
+
+  <!-- شريطان متقاطعان -->
+  <div class="mq__ribbons" aria-hidden="true">
+    <div class="mq__ribbon mq__ribbon--a" data-mq="60" data-dir="-1">
+      <div class="mq__track"><div class="mq__group">
+        <span class="mq__w">Full Stack Developer</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Mobile Apps</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">React</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Supabase</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Arabic RTL</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Clean UI</span><i class="mq__s fa-solid fa-asterisk"></i>
+      </div></div>
+    </div>
+
+    <div class="mq__ribbon mq__ribbon--b" data-mq="50" data-dir="1">
+      <div class="mq__track"><div class="mq__group">
+        <span class="mq__w">Let's build something great</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Fast</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Secure</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Scalable</span><i class="mq__s fa-solid fa-asterisk"></i>
+        <span class="mq__w">Responsive</span><i class="mq__s fa-solid fa-asterisk"></i>
+      </div></div>
+    </div>
+  </div>
+
 </section>
-      
+</section>
+
+      <div id="skills">
       <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
         style="text-align: center; margin-top: 2rem;">My Skills</h2>
-      <section class="skills">
+      <section class="skills decor-host">
+          <img class="deco deco--circle deco--spin" data-speed="0.12"
+       style="--s:130px; top:3%; right:3%;"
+       src="./assets/images/pattern-circle.svg" alt="" width="129" height="129">
+  <img class="deco deco--star deco--spin deco--twinkle" data-speed="-0.1"
+       style="--s:90px; top:42%; left:1%;"
+       src="./assets/images/star.webp" alt="" width="129" height="129">
+  <span class="deco deco--blob" style="--s:480px; bottom:5%; right:-12%;"></span>
         <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
           style="text-align: center; margin-top: 2rem;">My FrontEnd <i class="fa-solid fa-laptop-code"></i></h2>
 
@@ -285,12 +326,17 @@
           </div>
         </div>
       </section>
+    </div>
 <h2 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400" class="projects__headline header-xl"
   style="text-align: center; margin-top: 3.5rem;">My Certifications</h2>
 <p class="certs__intro" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
   Courses and credentials I've completed along the way.
 </p>
-<section class="certification_section">
+<section class="certification_section decor-host">
+    <span class="deco deco--ring deco--spin deco--hide-sm" data-speed="0.1"
+        style="--s:150px; top:6%; left:2%;"></span>
+  <span class="deco deco--plus deco--spin" data-speed="-0.08"
+        style="--s:40px; bottom:10%; right:6%;"></span>
   <div class="wrapper bottom-border">
     <div class="certs">
 
@@ -423,8 +469,163 @@
     </ul>
   </div>
 </section>
+<section class="hw decor-host" id="process">
+  <span class="deco deco--blob" data-speed="0.1" style="--s:520px; top:8%; right:-16%;"></span>
+  <span class="deco deco--dots deco--hide-sm" data-speed="-0.08" style="--s:170px; bottom:6%; left:2%;"></span>
 
-      <section class="projects">
+  <div class="wrapper hw__wrapper bottom-border">
+    <h2 class="header-xl" style="text-align:center; margin-bottom:0.5rem;"
+      data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">How I Work</h2>
+    <p class="slider-intro" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+      A simple, transparent process from the first message to launch day.
+    </p>
+
+    <div class="hw2" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
+
+      <div class="hw2__tabs" role="tablist" aria-label="Work process steps">
+        <button type="button" class="hw2__tab is-active" role="tab" id="hw-tab-0" aria-selected="true" aria-controls="hw-panel-0">
+          <span class="hw2__n">01</span>
+          <span class="hw2__tt"><b>Discover</b><small>Goals · Scope</small></span>
+          <span class="hw2__prog"></span>
+        </button>
+        <button type="button" class="hw2__tab" role="tab" id="hw-tab-1" aria-selected="false" aria-controls="hw-panel-1" tabindex="-1">
+          <span class="hw2__n">02</span>
+          <span class="hw2__tt"><b>Design</b><small>UI · Feedback</small></span>
+          <span class="hw2__prog"></span>
+        </button>
+        <button type="button" class="hw2__tab" role="tab" id="hw-tab-2" aria-selected="false" aria-controls="hw-panel-2" tabindex="-1">
+          <span class="hw2__n">03</span>
+          <span class="hw2__tt"><b>Build</b><small>Code · Backend</small></span>
+          <span class="hw2__prog"></span>
+        </button>
+        <button type="button" class="hw2__tab" role="tab" id="hw-tab-3" aria-selected="false" aria-controls="hw-panel-3" tabindex="-1">
+          <span class="hw2__n">04</span>
+          <span class="hw2__tt"><b>Launch</b><small>Deploy · Support</small></span>
+          <span class="hw2__prog"></span>
+        </button>
+      </div>
+
+      <div class="hw2__stage">
+
+        <!-- 01 Discover -->
+        <article class="hw2__panel is-active" role="tabpanel" id="hw-panel-0" aria-labelledby="hw-tab-0">
+          <span class="hw2__big" aria-hidden="true">01</span>
+          <div class="hw2__txt">
+            <span class="hw2__kicker"><i class="fa-solid fa-comments"></i> Step 01 · Discover</span>
+            <h3 class="hw2__h">Understand the idea</h3>
+            <p class="hw2__p">We talk about your idea, your audience, and what success looks like, then agree on a clear scope before anything is built.</p>
+            <ul class="hw2__list">
+              <li>Goals and target audience</li>
+              <li>Features and project scope</li>
+              <li>Timeline and budget</li>
+            </ul>
+          </div>
+          <div class="hw2__viz viz-chat" aria-hidden="true">
+            <div class="bub" style="--d:.15s"><span class="av"></span><div class="col"><span class="ln" style="width:92%"></span><span class="ln" style="width:60%"></span></div></div>
+            <div class="bub bub--r" style="--d:.65s"><div class="col"><span class="ln" style="width:80%"></span><span class="ln" style="width:100%"></span><span class="ln" style="width:48%"></span></div></div>
+            <div class="bub" style="--d:1.15s"><span class="av"></span><div class="col"><span class="ln" style="width:75%"></span></div></div>
+            <div class="bub" style="--d:1.6s"><span class="av"></span><div class="col dots"><b></b><b></b><b></b></div></div>
+            <span class="viz__chip" style="--d:2.1s"><i class="fa-solid fa-circle-check"></i> Scope agreed</span>
+          </div>
+        </article>
+
+        <!-- 02 Design -->
+        <article class="hw2__panel" role="tabpanel" id="hw-panel-1" aria-labelledby="hw-tab-1">
+          <span class="hw2__big" aria-hidden="true">02</span>
+          <div class="hw2__txt">
+            <span class="hw2__kicker"><i class="fa-solid fa-pen-ruler"></i> Step 02 · Design</span>
+            <h3 class="hw2__h">Shape the experience</h3>
+            <p class="hw2__p">Clean, responsive interfaces (RTL-first when needed) shared with you for feedback before any code is written.</p>
+            <ul class="hw2__list">
+              <li>Responsive layouts for every screen</li>
+              <li>Consistent colors and typography</li>
+              <li>Your feedback before development</li>
+            </ul>
+          </div>
+          <div class="hw2__viz viz-design" aria-hidden="true">
+            <div class="wf">
+              <div class="wf__bar"><span></span><span></span><span></span></div>
+              <div class="wf__body">
+                <div class="wf__nav" style="--d:.1s"><span></span><span></span><span></span></div>
+                <div class="wf__hero" style="--d:.3s"><span class="ln" style="width:62%"></span><span class="ln" style="width:42%"></span><span class="btn"></span></div>
+                <div class="wf__cards"><span style="--d:.55s"></span><span style="--d:.7s"></span><span style="--d:.85s"></span></div>
+              </div>
+              <span class="wf__cursor"><i class="fa-solid fa-arrow-pointer"></i></span>
+            </div>
+            <div class="viz__pal"><span style="background:#4ce19e"></span><span style="background:#7dd3fc"></span><span style="background:#ffffff"></span><span style="background:#2a2a2a"></span></div>
+          </div>
+        </article>
+
+        <!-- 03 Build -->
+        <article class="hw2__panel" role="tabpanel" id="hw-panel-2" aria-labelledby="hw-tab-2">
+          <span class="hw2__big" aria-hidden="true">03</span>
+          <div class="hw2__txt">
+            <span class="hw2__kicker"><i class="fa-solid fa-code"></i> Step 03 · Build</span>
+            <h3 class="hw2__h">Develop the product</h3>
+            <p class="hw2__p">Front-end, back-end, and database built with modern tools and clean, maintainable code that is easy to extend later.</p>
+            <ul class="hw2__list">
+              <li>Front-end with React and TypeScript</li>
+              <li>Auth, database, and APIs with Supabase</li>
+              <li>Clean, maintainable code</li>
+            </ul>
+          </div>
+          <div class="hw2__viz viz-code" aria-hidden="true">
+            <div class="ed">
+              <div class="ed__bar"><span></span><span></span><span></span><em>App.tsx</em></div>
+              <div class="ed__code">
+                <span class="cl" style="--d:.1s"><b class="c1">import</b> { supabase } <b class="c1">from</b> <b class="c2">"./db"</b>;</span>
+                <span class="cl" style="--d:.45s"><b class="c1">export function</b> <b class="c3">App</b>() {</span>
+                <span class="cl" style="--d:.8s; --t:1"><b class="c1">const</b> user = <b class="c3">useAuth</b>();</span>
+                <span class="cl" style="--d:1.15s; --t:1"><b class="c1">return</b> &lt;<b class="c3">Dashboard</b> user={user} /&gt;;</span>
+                <span class="cl" style="--d:1.5s">}<span class="caret"></span></span>
+              </div>
+            </div>
+            <span class="viz__chip" style="--d:1.9s"><i class="fa-solid fa-circle-check"></i> Build passed</span>
+          </div>
+        </article>
+
+        <!-- 04 Launch -->
+        <article class="hw2__panel" role="tabpanel" id="hw-panel-3" aria-labelledby="hw-tab-3">
+          <span class="hw2__big" aria-hidden="true">04</span>
+          <div class="hw2__txt">
+            <span class="hw2__kicker"><i class="fa-solid fa-rocket"></i> Step 04 · Launch</span>
+            <h3 class="hw2__h">Go live and keep going</h3>
+            <p class="hw2__p">Your product goes online with your own domain, then a proper handover and support after launch.</p>
+            <ul class="hw2__list">
+              <li>Deployment on Vercel or Netlify</li>
+              <li>Custom domain setup</li>
+              <li>Handover and post-launch support</li>
+            </ul>
+          </div>
+          <div class="hw2__viz viz-launch" aria-hidden="true">
+            <span class="rocket"><i class="fa-solid fa-rocket"></i></span>
+            <div class="dep">
+              <div class="dep__row" style="--d:.15s"><i class="fa-solid fa-circle-check"></i><span>Build</span></div>
+              <div class="dep__row" style="--d:.55s"><i class="fa-solid fa-circle-check"></i><span>Optimize</span></div>
+              <div class="dep__row" style="--d:.95s"><i class="fa-solid fa-circle-check"></i><span>Deploy</span></div>
+              <div class="dep__row" style="--d:1.35s"><i class="fa-solid fa-circle-check"></i><span>Domain connected</span></div>
+              <div class="dep__bar"><span></span></div>
+            </div>
+            <div class="live" style="--d:1.9s"><span class="live__dot"></span> Live <em>yourdomain.com</em></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="hw__cta" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
+      <p>Have a project in mind?</p>
+      <a href="#contact" data-scroll="#contact" class="hx__btn hx__btn--primary">
+        Let's talk <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+      <section class="projects  decor-host" id="projects">
+          <img class="deco deco--rings deco--float" data-speed="0.1"
+       style="--s:460px; top:10%; right:-16%;"
+       src="./assets/images/pattern-rings.svg" alt="" width="530" height="129">
+  <span class="deco deco--dots" data-speed="-0.1" style="--s:190px; bottom:6%; left:2%;"></span>
         <div class="wrapper projects__wrapper">
           <div class="projects__grid">
             <div class="projects__filters" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
@@ -901,7 +1102,8 @@
         </div>
       </section>
       <!-- ===== Featured Projects ===== -->
-<section class="featured" id="featured">
+<section class="featured decor-host" id="featured">
+
   <div class="wrapper featured__wrapper bottom-border">
     <h2 class="header-xl" style="text-align:center;"
       data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
@@ -911,7 +1113,13 @@
       Larger products I designed and built end-to-end.
     </p>
 
-<article class="case" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
+<article class="case" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">    
+  <span class="deco deco--blob" data-speed="0.12" style="--s:560px; top:8%; left:-18%; "></span>
+  <img class="deco deco--star deco--spin deco--twinkle" data-speed="-0.12"
+       style="--s:110px; top:2%; right:4%;"
+       src="./assets/images/star.webp" alt="" width="129" height="129">
+         <span class="deco deco--dots" data-speed="-0.1" style="--s:190px; bottom:6%; left:2%;"></span>
+
   <div class="case__media">
     <a data-fancybox="MedCore-1" href="./assets/images/projects/project-23/img-1.png" class="case__main">
       <span class="case__bar">
@@ -996,7 +1204,9 @@
 </section>
       <!-- ===== My Startup Section ===== -->
 <!-- ===== My Startup Section ===== -->
-<section class="startup sx bg-less-dark">
+<section class="startup sx bg-less-dark decor-host">
+<span class="deco deco--dots" data-speed="-0.1" style="--s:190px; bottom:6%; left:2%;"></span>
+  <span class="deco deco--plus deco--spin" style="--s:38px; bottom:12%; right:5%;"></span>
   <div class="wrapper startup__wrapper bottom-border">
 
     <h2 class="header-xl" style="text-align:center; margin-bottom:3.5rem;"
@@ -1179,7 +1389,10 @@
   Teams and brands that trusted me with their digital products.
 </p>
 
-<section class="clients">
+<section class="clients decor-host">
+    <span class="deco deco--ring deco--spin deco--hide-sm" data-speed="0.1"
+        style="--s:140px; top:0; right:4%;"></span>
+  <span class="deco deco--dots" style="--s:150px; bottom:0; left:3%;"></span>
   <div class="wrapper bottom-border">
     <div class="clx">
 
@@ -1207,7 +1420,11 @@
     </div>
   </div>
 </section>
-<section id="contact" class="contact cx bg-less-dark">
+<section id="contact" class="contact cx bg-less-dark decor-host">
+  <img class="deco deco--star deco--spin deco--twinkle" data-speed="-0.1"
+       style="--s:100px; top:6%; right:5%;"
+       src="./assets/images/star.webp" alt="" width="129" height="129">
+       <span class="deco deco--plus deco--spin" style="--s:34px; top:14%; right:46%;"></span>
   <div class="wrapper cx__wrapper bottom-border">
 
     <!-- Text -->
