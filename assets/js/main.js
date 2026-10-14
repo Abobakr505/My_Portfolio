@@ -1455,22 +1455,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!whatsappButton) return;
 
-  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    whatsappButton.addEventListener("pointermove", (event) => {
-      const bounds = whatsappButton.getBoundingClientRect();
-      const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-      const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-
-      whatsappButton.style.setProperty("--pointer-x", `${x}%`);
-      whatsappButton.style.setProperty("--pointer-y", `${y}%`);
-      whatsappButton.classList.add("is-pointer-over");
-    });
-
-    whatsappButton.addEventListener("pointerleave", () => {
-      whatsappButton.classList.remove("is-pointer-over");
-    });
-  }
-
   const revealButton = () => whatsappButton.classList.add("is-visible");
 
   if (window.__preloaderDone || !document.getElementById("preloader")) {
@@ -1478,4 +1462,17 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     document.addEventListener("preloader:done", revealButton, { once: true });
   }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  whatsappButton.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse") return;
+
+    const bounds = whatsappButton.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+
+    whatsappButton.style.setProperty("--pointer-x", `${x.toFixed(1)}%`);
+    whatsappButton.style.setProperty("--pointer-y", `${y.toFixed(1)}%`);
+  });
 });

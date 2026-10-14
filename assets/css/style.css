@@ -6388,7 +6388,6 @@ html.is-loading body {
     background .3s ease,
     opacity .35s ease,
     visibility 0s linear .35s;
-  translate: 0 0;
   opacity: 0;
   visibility: hidden;
   isolation: isolate;
@@ -6404,20 +6403,21 @@ html.is-loading body {
 .whatsapp-float::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 1px;
+  z-index: 1;
   border-radius: inherit;
   background: radial-gradient(
     circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
-    rgba(255, 255, 255, .52),
-    transparent 58%
+    rgba(255, 255, 255, .38),
+    transparent 62%
   );
   opacity: 0;
   transition: opacity .25s ease;
   pointer-events: none;
-  z-index: 1;
 }
 
-.whatsapp-float.is-pointer-over::before {
+.whatsapp-float:hover::before,
+.whatsapp-float:focus-visible::before {
   opacity: 1;
 }
 
@@ -6428,8 +6428,7 @@ html.is-loading body {
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: transform .4s cubic-bezier(.2,.8,.2,1), filter .3s ease;
-  transform-origin: 50% 65%;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), filter .4s ease;
 }
 
 .whatsapp-icon svg {
@@ -6438,18 +6437,17 @@ html.is-loading body {
   fill: currentColor;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .whatsapp-float:hover {
-    transform: translateY(-5px) scale(1.08);
-    box-shadow:
-      0 12px 35px rgba(32, 201, 100, .48),
-      0 0 0 8px rgba(32, 201, 100, .10);
-  }
+.whatsapp-float:hover {
+  transform: translateY(-5px) scale(1.08);
+  box-shadow:
+    0 12px 35px rgba(32, 201, 100, .48),
+    0 0 0 8px rgba(32, 201, 100, .10);
+  animation-play-state: paused;
+}
 
-  .whatsapp-float:hover .whatsapp-icon {
-    transform: translateY(-2px) rotate(-12deg) scale(1.16);
-    filter: drop-shadow(0 2px 3px rgba(0, 74, 34, .35));
-  }
+.whatsapp-float:hover .whatsapp-icon {
+  transform: translateY(-3px) rotate(-14deg) scale(1.16);
+  filter: drop-shadow(0 3px 3px rgba(0, 80, 35, .35));
 }
 
 /* Ripple glow */
@@ -6503,8 +6501,8 @@ html.is-loading body {
 }
 
 @keyframes whatsapp-float {
-  0%, 100% { translate: 0 0; }
-  50% { translate: 0 -5px; }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 @keyframes whatsapp-pulse {
@@ -6556,8 +6554,7 @@ html.is-loading body {
 
   .whatsapp-float,
   .whatsapp-icon,
-  .whatsapp-tooltip,
-  .whatsapp-float::before {
+  .whatsapp-tooltip {
     transition: none;
   }
 }
