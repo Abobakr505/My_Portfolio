@@ -6141,16 +6141,10 @@ html.is-loading body {
 
 @media (min-width: 62.5em) { .hx { padding-top: 96px; } }
 
-/* زر الصعود يرتفع فوق الـ Dock على الجوال */
-@media (max-width: 47.99em) {
-  #scrollTop {
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
-  }
-}
+
 
 /* ----- جوال ----- */
 @media (max-width: 47.99em) {
-  .dk { --b: 40px; gap: 4px; height: 58px; padding: 0 8px 8px; border-radius: 22px; }
   .dk__i { font-size: 1.05rem; }
   .dk__sep { height: 24px; margin: 0 2px 8px; }
   .dk__cta { width: var(--b); padding: 0; }
@@ -6158,11 +6152,80 @@ html.is-loading body {
   .dk__now { bottom: calc(env(safe-area-inset-bottom, 0px) + 16px + 58px + 12px); }
 }
 
-@media (max-width: 23.75em) {
-  .dk { --b: 36px; gap: 3px; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .dk, .dkl, .dk__now, .dk__i::before, .dk__i::after { transition: none; }
   .dk::before { animation: none; }
+}
+/* ============================= */
+/* ===== DOCK — MOBILE (XL) ==== */
+/* ============================= */
+
+@media (max-width: 47.99em) {
+  .dk {
+    --b: 50px;
+    width: calc(100vw - 24px);
+    max-width: 480px;
+    height: 72px;
+    gap: 2px;
+    padding: 0 8px 11px;
+    justify-content: space-between;
+    border-radius: 28px;
+  }
+
+  /* الأيقونات تتوزع بالتساوي وتتقلص عند الحاجة */
+  .dk__i,
+  .dk__cta {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: var(--b);
+    width: auto;
+    height: var(--b);
+    padding: 0;
+  }
+
+  .dk__i {
+    font-size: 1.3rem;
+    border-radius: 17px;
+  }
+
+  .dk__cta {
+    border-radius: 17px;
+    font-size: 1.2rem;
+  }
+
+  .dk__cta span { display: none; }
+
+  .dk__sep {
+    flex: 0 0 1px;
+    height: 30px;
+    margin: 0 2px 10px;
+  }
+
+  /* النقطة تحت الأيقونة النشطة */
+  .dk__i::after { bottom: -8px; width: 5px; height: 5px; }
+
+  /* كبسولة اسم القسم أكبر وفوق الـ Dock */
+  .dk__now {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 16px + 72px + 12px);
+    padding: 8px 18px;
+    font-size: 0.78rem;
+  }
+
+  /* زر الصعود فوق الـ Dock */
+  #scrollTop {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 16px + 72px + 14px);
+  }
+
+  /* شارة الشعار أكبر قليلًا */
+  .dkl { padding: 6px; }
+  .dkl__mark { width: 44px; height: 44px; font-size: 1.4rem; }
+}
+
+/* شاشات صغيرة جدًا */
+@media (max-width: 23.75em) {
+  .dk { --b: 46px; height: 68px; padding-bottom: 10px; }
+  .dk__i { font-size: 1.2rem; border-radius: 15px; }
+  .dk__cta { border-radius: 15px; }
+  .dk__now { bottom: calc(env(safe-area-inset-bottom, 0px) + 16px + 68px + 12px); }
+  #scrollTop { bottom: calc(env(safe-area-inset-bottom, 0px) + 16px + 68px + 14px); }
 }
