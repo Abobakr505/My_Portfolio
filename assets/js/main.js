@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- Send ----------
   // ---------- Send ----------
-  const send = async ({ name, email, message, hp }) => {
+const send = async ({ name, email, phone, subject, message, hp }) => {
     submitBtn.disabled = true;
     showSending();
 
@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message, hp_field: hp }),
+        body: JSON.stringify({ name, email, phone, subject, message, hp_field: hp }),
         signal: controller.signal,
       });
       const data = await res.json().catch(() => ({}));
@@ -438,11 +438,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // بيانات غير صحيحة: Retry بنفس البيانات سيفشل أيضًا
       if (res.status === 400) {
-        const why = {
-          invalid_name: "Please enter your name.",
-          invalid_email: "Please enter a valid email address.",
-          invalid_message: "Your message should be between 3 and 3000 characters.",
-        };
+const why = {
+  invalid_name: "Please enter your name.",
+  invalid_email: "Please enter a valid email address.",
+  invalid_phone: "Please enter a valid phone number.",
+  invalid_subject: "Please choose what your message is about.",
+  invalid_message: "Your message should be between 3 and 3000 characters.",
+};
         toast({
           type: "error",
           title: "Please check your details",
@@ -464,7 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : !navigator.onLine
           ? "You seem to be offline. Check your connection and try again."
           : "Something went wrong. Please try again in a moment.";
-      showError(reason, () => send({ name, email, message, hp }));
+      showError(reason, () => send({ name, email, phone, subject, message, hp }));
     } finally {
       clearTimeout(timeout);
       submitBtn.disabled = false;
@@ -477,12 +479,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const wait = Math.ceil((COOLDOWN_MS - (Date.now() - getLast())) / 1000);
     if (wait > 0) return showWait(wait);
 
-    send({
-      name: form.user_name.value.trim(),
-      email: form.user_email.value.trim(),
-      message: form.message.value.trim(),
-      hp: form.hp_field ? form.hp_field.value : "",
-    });
+send({
+  name: form.user_name.value.trim(),
+  email: form.user_email.value.trim(),
+  phone: form.user_phone.value.trim(),
+  subject: form.subject.value,
+  message: form.message.value.trim(),
+  hp: form.hp_field ? form.hp_field.value : "",
+});
   });
 });
 
@@ -570,9 +574,8 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   // عناصر تلتصق بها الحلقة وتأخذ شكلها
-  const MAGNET =
-    ".hx__btn, .sx__btn, .cx__link, .pf, .header__social, #scrollTop, #form_button, .tst__btn, .tst__close";
-
+const MAGNET =
+  ".hx__btn, .sx__btn, .cx__link, .pf, .header__social, #scrollTop, #form_button, .tst__btn, .tst__close, .whatsapp-float , .dk__i ";
   const TEXT_INPUTS =
     "input:not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]), textarea";
   const CLICKABLE =

@@ -6501,8 +6501,8 @@ html.is-loading body {
 }
 
 @keyframes whatsapp-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -5px; }
 }
 
 @keyframes whatsapp-pulse {
@@ -6567,4 +6567,206 @@ html.is-loading body {
     .subtitle_section{
     padding: 0 2rem;
   }
+}
+
+/* ===== Contact: topic chips ===== */
+.cx__topics {
+  min-width: 0;
+  margin: 0 0 18px;
+  padding: 18px 16px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.cx__topics:focus-within {
+  border-color: rgba(76, 225, 158, 0.5);
+  background: rgba(76, 225, 158, 0.04);
+}
+
+.cx__topics legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 14px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cx__chips {
+  clear: both;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 37.5em) {
+  .cx__chips { grid-template-columns: repeat(3, 1fr); }
+}
+
+.cx__chip {
+  position: relative;
+  cursor: pointer;
+}
+
+/* الـ radio مخفي بصريًا لكنه شغال مع الكيبورد والـ validation */
+.cx__chip input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.cx__chip span {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 78px;
+  padding: 12px 8px;
+  overflow: hidden;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--text2);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease, translate 0.3s ease;
+}
+
+.cx__chip span i {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  font-size: 0.95rem;
+  color: var(--accent);
+  background: rgba(76, 225, 158, 0.1);
+  border-radius: 10px;
+  transition: color 0.3s ease, background-color 0.3s ease, scale 0.3s ease;
+}
+
+.cx__chip:hover span {
+  color: var(--text1);
+  border-color: rgba(76, 225, 158, 0.6);
+  background: rgba(76, 225, 158, 0.06);
+  translate: 0 -3px;
+}
+
+.cx__chip:hover span i { scale: 1.08; }
+
+/* المختار */
+.cx__chip input:checked + span {
+  color: var(--text1);
+  background: rgba(76, 225, 158, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 10px 26px rgba(76, 225, 158, 0.18),
+    inset 0 0 0 1px rgba(76, 225, 158, 0.35);
+}
+
+.cx__chip input:checked + span i {
+  color: var(--bg-body);
+  background: var(--accent);
+}
+
+/* علامة صح في الزاوية */
+.cx__chip span::after {
+  content: "✔";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  font-size: 0.55rem;
+  color: var(--bg-body);
+  background: var(--accent);
+  border-radius: 50%;
+  scale: 0;
+  transition: scale 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.5);
+}
+
+.cx__chip input:checked + span::after { scale: 1; }
+
+.cx__chip input:focus-visible + span {
+  outline: 2px dashed var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx__chip span,
+  .cx__chip span i,
+  .cx__chip span::after { transition: none; }
+}
+
+/* ===== Contact form: compact ===== */
+
+/* الإيميل والهاتف جنب بعض على الشاشات المتوسطة وفوق */
+.cx__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media (min-width: 37.5em) {
+  .cx__row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* الـ chips: صف أفقي مدمج بدل كروت طويلة */
+.cx__topics {
+  margin-bottom: 14px;
+  padding: 14px 14px 12px;
+}
+
+.cx__topics legend {
+  margin-bottom: 10px;
+}
+
+.cx__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cx__chip span {
+  flex-direction: row;
+  gap: 8px;
+  min-height: 0;
+  padding: 7px 12px 7px 8px;
+  font-size: 0.78rem;
+  border-radius: 999px;
+}
+
+.cx__chip span i {
+  width: 24px;
+  height: 24px;
+  font-size: 0.72rem;
+  border-radius: 50%;
+}
+
+/* علامة الصح الصغيرة ما عادش ليها لزوم: اللون والأيقونة كفاية */
+.cx__chip span::after { display: none; }
+
+.cx__chip:hover span { translate: 0 -2px; }
+
+/* حقل الرسالة أقصر */
+.cx__field textarea {
+  min-height: 100px;
 }

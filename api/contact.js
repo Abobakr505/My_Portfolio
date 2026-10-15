@@ -7,7 +7,7 @@ const ALLOWED_ORIGINS = [
 const LIMIT = 5;                         // أقصى عدد رسائل
 const WINDOW_MS = 10 * 60 * 1000;        // خلال 10 دقائق لكل IP
 const hits = new Map();
-
+const SUBJECTS = ["Web Development", "Mobile App", "Backend & API", "UI/UX Design", "Other"];
 const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -87,24 +87,31 @@ module.exports = async function handler(req, res) {
   // 7) التحقق من البيانات
   const name = clean(body.name);
   const email = clean(body.email);
+  const phone = clean(body.phone);
+const subject = clean(body.subject);
   let message = clean(body.message);
 
   if (!name || name.length > 100)
     return reply(res, 400, { ok: false, error: "invalid_name" });
   if (email.length > 150 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
     return reply(res, 400, { ok: false, error: "invalid_email" });
+  if (phone && !/^\+?[0-9\s\-()]{7,20}$/.test(phone))
+  return reply(res, 400, { ok: false, error: "invalid_phone" });
+if (!SUBJECTS.includes(subject))
+  return reply(res, 400, { ok: false, error: "invalid_subject" });
   if (message.length < 3 || message.length > 3000)
     return reply(res, 400, { ok: false, error: "invalid_message" });
 
   // حد تليجرام 4096 حرفًا، والتهريب يزيد الطول
   while (esc(message).length > 3500) message = message.slice(0, -100);
 
-  const text =
-    `<b>📩 رسالة جديدة من الموقع</b>\n\n` +
-    `👤 <b>الاسم:</b> ${esc(name)}\n` +
-    `📧 <b>الإيميل:</b> ${esc(email)}\n` +
-    `💬 <b>الرسالة:</b>\n${esc(message)}`;
-
+const text =
+  `<b>📩 رسالة جديدة من الموقع</b>\n\n` +
+  `👤 <b>الاسم:</b> ${esc(name)}\n` +
+  `📧 <b>الإيميل:</b> ${esc(email)}\n` +
+  `📞 <b>الهاتف:</b> ${phone ? esc(phone) : "—"}\n` +
+  `🎯 <b>الموضوع:</b> ${esc(subject)}\n` +
+  `💬 <b>الرسالة:</b>\n${esc(message)}`;
   // 8) الإرسال لتليجرام
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 10000);

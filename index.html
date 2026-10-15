@@ -1571,12 +1571,47 @@
         <label for="name">Name</label>
       </div>
 
-      <div class="cx__field">
-        <i class="fa-regular fa-envelope"></i>
-        <input type="email" id="email" name="user_email" placeholder=" " autocomplete="email" required />
-        <label for="email">Email</label>
-      </div>
+<div class="cx__row">
+  <div class="cx__field">
+    <i class="fa-regular fa-envelope"></i>
+    <input type="email" id="email" name="user_email" placeholder=" " autocomplete="email" required />
+    <label for="email">Email</label>
+  </div>
 
+  <div class="cx__field">
+    <i class="fa-solid fa-phone"></i>
+    <input type="tel" id="phone" name="user_phone" placeholder=" "
+           autocomplete="tel" inputmode="tel" maxlength="20" required />
+    <label for="phone">Phone </label>
+  </div>
+</div>
+
+<!-- قبل حقل الرسالة -->
+<fieldset class="cx__topics">
+  <legend>What's it about?</legend>
+  <div class="cx__chips">
+    <label class="cx__chip">
+      <input type="radio" name="subject" value="Web Development" required>
+      <span><i class="fa-solid fa-globe"></i> Web Development</span>
+    </label>
+    <label class="cx__chip">
+      <input type="radio" name="subject" value="Mobile App">
+      <span><i class="fa-solid fa-mobile-screen-button"></i> Mobile App</span>
+    </label>
+    <label class="cx__chip">
+      <input type="radio" name="subject" value="Backend & API">
+      <span><i class="fa-solid fa-server"></i> Backend &amp; API</span>
+    </label>
+    <label class="cx__chip">
+      <input type="radio" name="subject" value="UI/UX Design">
+      <span><i class="fa-solid fa-pen-ruler"></i> UI/UX Design</span>
+    </label>
+    <label class="cx__chip">
+      <input type="radio" name="subject" value="Other">
+      <span><i class="fa-solid fa-ellipsis"></i> Other</span>
+    </label>
+  </div>
+</fieldset>
       <div class="cx__field cx__field--area">
         <i class="fa-regular fa-message"></i>
         <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
@@ -1632,10 +1667,10 @@
   class="whatsapp-float"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="تواصل معي عبر واتساب"
-  title="تواصل معي عبر واتساب"
+  aria-label="Chat with me on WhatsApp"
+  title="Chat with me on WhatsApp"
 >
-  <span class="whatsapp-tooltip">خلينا نتكلم عن مشروعك!</span>
+  <span class="whatsapp-tooltip">Let's talk about your project!</span>
 
   <span class="whatsapp-icon">
     <svg viewBox="0 0 32 32" aria-hidden="true">
