@@ -6770,3 +6770,17 @@ html.is-loading body {
 .cx__field textarea {
   min-height: 100px;
 }
+
+/* نافذة المعرض فوق الـ Dock والشعار وزر الصعود وشريط التقدّم */
+.fancybox__container {
+  z-index: 3500 !important;
+}
+
+/* اختياري: إخفاء عناصر الواجهة أثناء فتح المعرض */
+.with-fancybox .dk,
+.with-fancybox .dkl,
+.with-fancybox .dk__now,
+.with-fancybox #scrollTop {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
