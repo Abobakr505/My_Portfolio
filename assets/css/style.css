@@ -6784,3 +6784,165 @@ html.is-loading body {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* ===== Projects: show more ===== */
+.projects__item.pf-pop {
+  animation: pfIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--pd, 0ms);
+}
+
+@keyframes pfIn {
+  from { opacity: 0; translate: 0 28px; scale: 0.95; }
+  to   { opacity: 1; translate: 0 0;   scale: 1; }
+}
+
+.pm {
+  grid-column: 1 / -1;
+  order: 98;                         /* قبل زر Contact Me (order: 99) */
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 340px);
+  margin-top: 12px;
+}
+
+.pm[hidden] { display: none; }
+
+.pm__info {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.pm__info b {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.pm__track {
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.pm__track span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #7dd3fc);
+  box-shadow: 0 0 10px rgba(76, 225, 158, 0.6);
+  transform-origin: left center;
+  scale: 0 1;
+  transition: scale 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pm__btn {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 0 30px;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg-body);
+  background: var(--accent);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(76, 225, 158, 0.25);
+  transition: translate 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* لمعة تعبر الزر */
+.pm__btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.5) 50%, transparent 65%);
+  translate: -120% 0;
+  pointer-events: none;
+}
+
+.pm__btn:hover {
+  translate: 0 -3px;
+  box-shadow: 0 14px 36px rgba(76, 225, 158, 0.45);
+}
+
+.pm__btn:hover::after {
+  translate: 120% 0;
+  transition: translate 0.8s ease;
+}
+
+.pm__btn:active { translate: 0 0; scale: 0.97; }
+
+.pm__btn:focus-visible { outline: 2px dashed var(--accent); outline-offset: 4px; }
+
+.pm__count {
+  padding: 2px 9px;
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: var(--bg-body);
+  border-radius: 999px;
+}
+
+.pm__count[hidden] { display: none; }
+
+.pm__arrow { transition: rotate 0.4s ease, translate 0.3s ease; }
+.pm__btn:hover .pm__arrow { translate: 0 3px; }
+
+/* حالة Show less */
+.pm__btn.is-less {
+  color: var(--text1);
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pm__btn.is-less:hover { color: var(--accent); border-color: var(--accent); }
+.pm__btn.is-less .pm__arrow { rotate: 180deg; }
+.pm__btn.is-less:hover .pm__arrow { translate: 0 -3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .projects__item.pf-pop { animation: none; }
+  .pm__track span, .pm__btn, .pm__arrow { transition: none; }
+}
+
+/* ===== Projects: gallery badge (نفس شكل Featured) ===== */
+.projects__picture.is-gallery { cursor: pointer; }
+
+.projects__count {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text1);
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid rgba(76, 225, 158, 0.5);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+.projects__count i { color: var(--accent); }
+
+/* على أجهزة الماوس الأزرار تظهر فوق الصورة عند hover، فنرفع الشارة */
+@media (hover: hover) and (pointer: fine) {
+  .projects__item:hover .projects__count { opacity: 0; }
+}

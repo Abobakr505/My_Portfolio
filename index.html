@@ -138,9 +138,9 @@
 <!-- الـ Dock -->
 <nav class="dk" id="dock" aria-label="Main navigation">
   <a class="dk__i" href="#home" data-nav="home" data-label="Home" aria-label="Home"><i class="fa-solid fa-house"></i></a>
-  <a class="dk__i" href="#skills" data-nav="skills" data-label="Skills" aria-label="Skills"><i class="fa-solid fa-code"></i></a>
+  <a class="dk__i" href="#skills" data-nav="skills" data-label="Skills" aria-label="Skills"><i class="fa-solid fa-screwdriver-wrench"></i></a>
   <a class="dk__i" href="#services" data-nav="services" data-label="Services" aria-label="Services"><i class="fa-solid fa-briefcase"></i></a>
-  <a class="dk__i" href="#process" data-nav="process" data-label="Process" aria-label="Process"><i class="fa-solid fa-diagram-project"></i></a>
+  <a class="dk__i" href="#certifications" data-nav="certifications" data-label="Certifications" aria-label="Certifications"><i class="fa-solid fa-medal"></i></a>
   <a class="dk__i" href="#featured" data-nav="work" data-label="Work" aria-label="Work"><i class="fa-solid fa-folder-open"></i></a>
   <a class="dk__i" href="#contact" data-nav="contact" data-label="Contact" aria-label="Contact"><i class="fa-solid fa-envelope"></i></a>
 
@@ -421,7 +421,7 @@
 <p class="certs__intro" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
   Courses and credentials I've completed along the way.
 </p>
-<section class="certification_section decor-host">
+<section class="certification_section decor-host" aria-label="Certifications" id="certifications">
     <span class="deco deco--ring deco--spin deco--hide-sm" data-speed="0.1"
         style="--s:150px; top:6%; left:2%;"></span>
   <span class="deco deco--plus deco--spin" data-speed="-0.08"
@@ -727,7 +727,22 @@
             <a data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400"
               href="#contact" id="linky"
               class="projects__contact underline">Contact Me</a>     
-                        
+                                                <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
+              <picture class="projects__picture">
+                <source media="(min-width: 62.5em)" srcset="./assets/images/projects/project-4.png" loading="lazy"/>
+                <img class="projects__image" src="./assets/images/projects/project-4.png"
+                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
+              </picture>
+              <h3 class="projects__name"> Sheikh Ragab Website</h3>
+              <p class="projects__tags">
+                <span>REACT JS</span>
+                <span>Tailwind</span>
+              </p>
+              <div class="projects__links">
+                <a href="https://sheikh-ragab.vercel.app/" target="_blank" class="underline">View Project</a>
+
+              </div>
+            </div>
             <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
               <picture class="projects__picture">
                 <source media="(min-width: 62.5em)" srcset="./assets/images/projects/project-3.png" loading="lazy"/>
@@ -1169,24 +1184,19 @@
 
               </div>
             </div>
-                        <div class="projects__item" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="400">
-              <picture class="projects__picture">
-                <source media="(min-width: 62.5em)" srcset="./assets/images/projects/project-2.png" loading="lazy"/>
-                <img class="projects__image" src="./assets/images/projects/project-2.png"
-                  alt="is image Not found" width-="343" height="253" loading="lazy"/>
-              </picture>
-              <h3 class="projects__name"> Yasuruha Old Website</h3>
-              <p class="projects__tags">
-                <span>REACT JS</span>
-                <span>Supabase</span>
-                <span>Tailwind</span>
-              </p>
-              <div class="projects__links">
-                <a href="https://yasuruha-two.vercel.app/" target="_blank" class="underline">View Project</a>
 
-              </div>
-            </div>
-
+<!-- Show more -->
+<div class="pm" id="pmWrap" hidden>
+  <div class="pm__info">
+    Showing <b id="pmShown">6</b> of <b id="pmTotal">0</b>
+  </div>
+  <div class="pm__track"><span id="pmBar"></span></div>
+  <button type="button" class="pm__btn" id="pmBtn" aria-live="polite">
+    <span class="pm__label">Show more</span>
+    <span class="pm__count" id="pmCount">+3</span>
+    <i class="fa-solid fa-chevron-down pm__arrow"></i>
+  </button>
+</div>
           </div>
         </div>
       </section>

@@ -1490,3 +1490,145 @@ document.addEventListener("DOMContentLoaded", () => {
     whatsappButton.style.setProperty("--pointer-y", `${y.toFixed(1)}%`);
   });
 });
+// ===== Projects: filter + show more =====
+document.addEventListener("DOMContentLoaded", () => {
+  const items   = [...document.querySelectorAll(".projects__item")];
+  const filters = document.querySelectorAll(".projects__filters .pf");
+  const wrap    = document.getElementById("pmWrap");
+  const btn     = document.getElementById("pmBtn");
+  if (!items.length || !wrap || !btn) return;
+
+  const elShown = document.getElementById("pmShown");
+  const elTotal = document.getElementById("pmTotal");
+  const elBar   = document.getElementById("pmBar");
+  const elCount = document.getElementById("pmCount");
+  const label   = btn.querySelector(".pm__label");
+
+  const INITIAL = 6;   // عدد المشاريع الأولي
+  const STEP    = 3;   // كم مشروع في كل ضغطة
+  let filter = "all";
+  let limit  = INITIAL;
+
+  // تصنيف تلقائي: Native أو Expo = Mobile
+  items.forEach((item) => {
+    const tags = (item.querySelector(".projects__tags")?.textContent || "").toLowerCase();
+    item.dataset.type = tags.includes("native") || tags.includes("expo") ? "mobile" : "web";
+  });
+
+  const refreshLayout = () => {
+    if (window.AOS) AOS.refresh();
+    window.dispatchEvent(new Event("resize"));      // مهم مع butter.js
+  };
+
+  const render = (animate = false) => {
+    const matched = items.filter((i) => filter === "all" || i.dataset.type === filter);
+    const total = matched.length;
+    let k = 0;
+
+    items.forEach((item) => {
+      if (!matched.includes(item)) item.classList.add("is-hidden");
+    });
+
+    matched.forEach((item, idx) => {
+      const show = idx < limit;
+      const wasHidden = item.classList.contains("is-hidden");
+      item.classList.toggle("is-hidden", !show);
+
+      if (show && wasHidden) {
+        item.classList.add("aos-animate");          // AOS ما يلمسه وهو مخفي
+        if (animate) {
+          item.style.setProperty("--pd", k++ * 90 + "ms");
+          item.classList.remove("pf-pop");
+          void item.offsetWidth;                    // إعادة تشغيل الأنيميشن
+          item.classList.add("pf-pop");
+          item.addEventListener("animationend", () => item.classList.remove("pf-pop"), { once: true });
+        }
+      }
+    });
+
+    // ----- الزر والعداد -----
+    const shown = Math.min(limit, total);
+    const remaining = total - shown;
+
+    wrap.hidden = total <= INITIAL;
+    elShown.textContent = shown;
+    elTotal.textContent = total;
+    elBar.style.scale = total ? (shown / total) + " 1" : "0 1";
+
+    if (remaining > 0) {
+      label.textContent = "Show more";
+      elCount.textContent = "+" + Math.min(STEP, remaining);
+      elCount.hidden = false;
+      btn.classList.remove("is-less");
+    } else {
+      label.textContent = "Show less";
+      elCount.hidden = true;
+      btn.classList.add("is-less");
+    }
+
+    setTimeout(refreshLayout, 60);
+    setTimeout(refreshLayout, 650);                 // بعد انتهاء الأنيميشن
+  };
+
+  // ----- الفلتر -----
+  filters.forEach((f) => {
+    f.addEventListener("click", () => {
+      filter = f.dataset.filter;
+      limit = INITIAL;
+      filters.forEach((b) => b.classList.toggle("is-active", b === f));
+      items.forEach((i) => i.classList.add("is-hidden"));   // يعيد الأنيميشن للكل
+      render(true);
+    });
+  });
+
+  // ----- عرض المزيد / أقل -----
+  btn.addEventListener("click", () => {
+    const total = items.filter((i) => filter === "all" || i.dataset.type === filter).length;
+
+    if (limit >= total) {
+      // Show less: ارجع للبداية وانزل لأول القسم
+      limit = INITIAL;
+      render(false);
+      const section = document.getElementById("projects");
+      const y = Math.max(section.offsetTop - 40, 0);
+      if (typeof butter !== "undefined" && butter.scrollTo) butter.scrollTo(y);
+      else window.scrollTo({ top: y, behavior: "smooth" });
+    } else {
+      limit += STEP;
+      render(true);
+    }
+  });
+
+  render(false);
+});
+
+// ===== Fancybox: نفس التجربة في Projects و Featured =====
+// ===== Fancybox: نفس التجربة في Projects و Featured =====
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".projects__item").forEach((item) => {
+    const links = item.querySelectorAll("a[data-fancybox]");
+    if (!links.length) return;                    // مشاريع الروابط الخارجية تتخطى
+
+    // thumbnails: كل لينك ياخد صورته كمصغّرة (مطلوبة عشان تظهر الصور تحت)
+    links.forEach((a) => {
+      if (a.querySelector("img")) return;
+      const src = a.getAttribute("href");
+      a.dataset.thumb = src;                      // Fancybox v5
+      a.dataset.thumbSrc = src;                   // Fancybox v6
+    });
+
+    const pic = item.querySelector(".projects__picture");
+    if (!pic) return;
+
+    // شارة عدد الصور
+    const badge = document.createElement("span");
+    badge.className = "projects__count";
+    badge.innerHTML = `<i class="fa-regular fa-images"></i> ${links.length} photos`;
+    pic.appendChild(badge);
+
+    // المؤشر يكتب Gallery، والضغط على الصورة يفتح المعرض
+    pic.dataset.cursor = "Gallery";
+    pic.classList.add("is-gallery");
+    pic.addEventListener("click", () => links[0].click());
+  });
+});
